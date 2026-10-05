@@ -3,121 +3,188 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Emisora Santander estereo 102.7</title>
+  <title>Emisora Santander Estéreo 102.7 FM</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap');
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
+
     body {
-      background-color: #f1f5f9;
-      color: #0f172a;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
-      padding: 35px 18px;
-      min-height: 100vh;
+      align-items: center;
+      padding: 30px 16px;
+      background: radial-gradient(circle at 50% 20%, #0d3b7a 0%, #061a38 55%, #020b18 100%);
+      color: #ffffff;
     }
+
     .card {
       width: 100%;
-      max-width: 390px;
-      background: #ffffff;
-      padding: 28px 20px;
-      border-radius: 24px;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+      max-width: 400px;
+      background: rgba(8, 26, 56, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 28px;
+      padding: 36px 22px;
       text-align: center;
-      height: fit-content;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7),
+                  0 0 30px rgba(13, 59, 122, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.12);
     }
+
+    /* Logo con aura dorada */
+    .avatar-wrapper {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 16px auto;
+    }
+
+    .avatar-glow {
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffe259, #ffa751);
+      filter: blur(6px);
+      opacity: 0.8;
+    }
+
     .avatar {
-      width: 85px;
-      height: 85px;
+      position: relative;
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 14px;
-      border: 3px solid #e2e8f0;
+      background: #020b18;
+      border: 2px solid #ffffff;
+      display: block;
     }
+
     h1 {
-      font-size: 1.35rem;
-      font-weight: 800;
-      margin-bottom: 4px;
+      font-size: 1.45rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #fff275 0%, #ff9300 70%, #d86200 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 2px;
     }
+
+    .freq {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #ffa751;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+    }
+
     .bio {
-      font-size: 0.9rem;
-      color: #64748b;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #94a3b8;
       margin-bottom: 24px;
     }
+
+    /* Botones */
     .btn {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
       width: 100%;
-      padding: 14px 16px;
-      margin-bottom: 12px;
-      border-radius: 14px;
+      padding: 15px 18px;
+      margin-bottom: 13px;
+      border-radius: 16px;
       text-decoration: none;
       font-weight: 700;
       font-size: 0.95rem;
+      color: #ffffff !important;
+      position: relative;
+      overflow: hidden;
       transition: transform 0.15s ease, filter 0.15s ease;
-      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
+
     .btn:active {
-      transform: scale(0.98);
-      filter: brightness(0.9);
+      transform: scale(0.97);
     }
-    .btn-wa { background-color: #25D366; }
-    .btn-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-    .btn-fb { background-color: #1877F2; }
-    .btn-tt { background-color: #010101; }
-    .btn-maps { background-color: #0F9D58; }
+
+    .btn svg {
+      width: 21px;
+      height: 21px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* Botón Señal en Vivo / Web (Destacado Oro) */
+    .btn-live {
+      background: linear-gradient(135deg, #ffb300 0%, #ff6f00 100%);
+      color: #081a38 !important;
+      border: 1px solid #ffe082;
+      box-shadow: 0 4px 20px rgba(255, 179, 0, 0.35);
+    }
+    .btn-live svg { fill: #081a38; }
+
+    /* Redes */
+    .btn-wa { background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); }
+    .btn-tt { background: #000000; border-color: rgba(255, 255, 255, 0.25); }
+    .btn-maps { background: linear-gradient(135deg, #0F9D58 0%, #0b6c3c 100%); }
+
     .footer {
-      margin-top: 20px;
-      font-size: 0.75rem;
-      color: #94a3b8;
+      margin-top: 22px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: #64748b;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
   </style>
 </head>
 <body>
 
   <div class="card">
-    <!-- Reemplaza con la URL del logo del cliente (puedes subir la foto al mismo repo) -->
-    <img class="avatar" src="logoemisora.png" alt="Logo">
+    <!-- Logo de la emisora -->
+    <div class="avatar-wrapper">
+      <div class="avatar-glow"></div>
+      <img class="avatar" src="logoemisora.png" alt="Logo Santander Estéreo">
+    </div>
     
-    <h1>Emisora Santader Estereo</h1>
-    <p class="bio">¡Conéctate con nosotros en un toque!</p>
+    <h1>Santander Estéreo</h1>
+    <div class="freq">102.7 FM</div>
+    <p class="bio">¡Conéctate con nosotros en un solo toque!</p>
 
-    <!-- Botón WhatsApp con mensaje automático -->
-    <a class="btn btn-wa" href="https://wa.me/573108279195?text=Hola,%20quiero%20hacer%20un%20pedido" target="_blank">
-      💬 Escríbenos al WhatsApp
+    <!-- 1. Escuchar En Vivo / Web Oficial -->
+    <a class="btn btn-live" href="https://santanderstereofm1027.com/" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Escúchanos En Vivo
     </a>
 
-    <!-- Botón Instagram 
-    <a class="btn btn-ig" href="https://instagram.com/usuario_negocio" target="_blank">
-      📸 Síguenos en Instagram
+    <!-- 2. WhatsApp en Cabina -->
+    <a class="btn btn-wa" href="https://wa.me/573108279195?text=Hola,%20los%20escucho%20en%20Santander%20Estéreo%20102.7%20FM" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+      Escríbenos al WhatsApp
     </a>
 
-    <!-- Botón TikTok -->
+    <!-- 3. TikTok Oficial -->
     <a class="btn btn-tt" href="https://www.tiktok.com/@santanderestereo102.7?_r=1&_t=ZS-9A5iCLbazEP" target="_blank">
-      <svg style="width:20px; height:20px; fill:currentColor;" viewBox="0 0 24 24">
-        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-      </svg>
+      <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
       Síguenos en TikTok
     </a>
 
-
-    <!-- Botón Facebook -->
-    <a class="btn btn-fb" href="https://santanderstereofm1027.com/" target="_blank">
-      Escuchanos
-    </a>
-
-    <!-- Botón Calificar en Google Maps -->
+    <!-- 4. Calificar en Google Maps -->
     <a class="btn btn-maps" href="https://maps.google.com" target="_blank">
-      ⭐ Déjanos tu opinión en Google
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      Califícanos en Google
     </a>
-
-    <!-- Botón opcional para Menú en PDF o Catálogo -->
-    <!-- <a class="btn btn-menu" href="#" target="_blank">📋 Ver Menú Digital</a> -->
 
     <div class="footer">
       Contacto Digital NFC
