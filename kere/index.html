@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keré • Chocolatería Artesanal</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Montserrat:wght@400;500;600;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', -apple-system, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Fondo cálido crema / manteca de cacao */
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 28px 16px;
+      background: radial-gradient(circle at 50% 20%, #fffaf5 0%, #faede2 50%, #f3decb 100%);
+      color: #3d2314;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Resplandor suave terracota */
+    .cacao-glow {
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(224, 122, 70, 0.18) 0%, rgba(224, 122, 70, 0.05) 55%, transparent 75%);
+      filter: blur(40px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Tarjeta principal artesanal */
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 395px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 32px;
+      padding: 36px 22px 28px 22px;
+      text-align: center;
+      box-shadow: 0 20px 45px rgba(184, 86, 36, 0.12),
+                  0 4px 16px rgba(61, 35, 20, 0.06);
+      border: 1.5px solid #f2cfb8;
+    }
+
+    /* Contenedor del Logo con halo terracota */
+    .avatar-wrapper {
+      position: relative;
+      width: 116px;
+      height: 116px;
+      margin: 0 auto 16px auto;
+    }
+
+    .avatar-halo {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f29c6b, #e07a46, #c45b25);
+      filter: blur(6px);
+      opacity: 0.55;
+    }
+
+    .avatar {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: contain;
+      padding: 8px;
+      background: #ffffff;
+      border: 2px solid #f2cfb8;
+      display: block;
+    }
+
+    /* Títulos y Subtítulos idénticos al logo */
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: #e07a46;
+      letter-spacing: 0.5px;
+      line-height: 1.1;
+      margin-bottom: 2px;
+    }
+
+    .sub-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: #3d2314;
+      text-transform: capitalize;
+      margin-bottom: 8px;
+    }
+
+    .bio {
+      font-size: 0.86rem;
+      color: #6d5445;
+      line-height: 1.4;
+      margin-bottom: 22px;
+      padding: 0 6px;
+    }
+
+    /* Píldoras descriptivas */
+    .cacao-tags {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .cacao-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: #fdf3eb;
+      border: 1px solid #f2cfb8;
+      color: #c45b25;
+      letter-spacing: 0.4px;
+    }
+
+    /* Botones */
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 15px 18px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #ffffff !important;
+      position: relative;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      border: none;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn svg {
+      width: 21px;
+      height: 21px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* WhatsApp directo */
+    .btn-wa {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.25);
+    }
+
+    /* Instagram en tono terracota degradado */
+    .btn-ig {
+      background: linear-gradient(135deg, #e07a46 0%, #c45b25 50%, #9a3c10 100%);
+      box-shadow: 0 6px 20px rgba(224, 122, 70, 0.32);
+    }
+
+    /* Facebook */
+    .btn-fb {
+      background: linear-gradient(135deg, #1877F2 0%, #0d5cb6 100%);
+      box-shadow: 0 6px 18px rgba(24, 119, 242, 0.25);
+    }
+
+    .footer {
+      border-top: 1px dashed #f2cfb8;
+      padding-top: 14px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #c45b25;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cacao-glow"></div>
+
+  <div class="card">
+    
+    <!-- Logo Keré con ajuste contain -->
+    <div class="avatar-wrapper">
+      <div class="avatar-halo"></div>
+      <img class="avatar" src="kerelogo.jpeg" alt="Logo Keré Chocolatería Artesanal">
+    </div>
+
+    <!-- Título y categoría del logo -->
+    <h1>Keré</h1>
+    <div class="sub-brand">Chocolatería artesanal</div>
+
+    <div class="cacao-tags">
+      <span class="cacao-tag">🍫 Cacao Puro</span>
+      <span class="cacao-tag">🌰 Bombones</span>
+      <span class="cacao-tag">✨ Hecho a Mano</span>
+    </div>
+
+    <p class="bio">El auténtico sabor del cacao transformado en arte. Contáctanos y realiza tu pedido dulce.</p>
+
+    <!-- Botonera interactiva -->
+    <div class="btn-container">
+
+      <!-- WhatsApp Pedidos -->
+      <a class="btn btn-wa" href="https://wa.me/573218104618?text=Hola%20Keré,%20vengo%20desde%20su%20tarjeta%20NFC%20y%20quiero%20hacer%20un%20pedido%20de%20chocolatería" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+        Escríbenos al WhatsApp
+      </a>
+
+      <!-- Instagram Oficial -->
+      <a class="btn btn-ig" href="https://www.instagram.com/p/DdX3PA_ufRQ/?obrf=dmFqeDV6dmFlM2p4" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Síguenos en Instagram
+      </a>
+
+      <!-- Facebook Oficial -->
+      <a class="btn btn-fb" href="https://www.facebook.com/share/p/1FawHvTxcS/" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Página de Facebook
+      </a>
+
+    </div>
+
+    <div class="footer">
+      🍫 Tarjeta NFC Oficial • Keré
+    </div>
+
+  </div>
+
+</body>
+</html>
