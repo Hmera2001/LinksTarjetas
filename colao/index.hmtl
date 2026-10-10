@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cola'o • Coffee Cream</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,600&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Fondo degradado cálido tostado / espresso profundo */
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 26px 16px;
+      background: radial-gradient(circle at 50% 18%, #2b1810 0%, #170d08 55%, #0c0604 100%);
+      color: #fbf7ee;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Resplandor cálido de fondo */
+    .coffee-glow {
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 330px;
+      height: 330px;
+      background: radial-gradient(circle, rgba(217, 131, 36, 0.22) 0%, rgba(140, 71, 14, 0.08) 55%, transparent 75%);
+      filter: blur(45px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Tarjeta principal estilo café bar / cristal tostado */
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 400px;
+      background: rgba(28, 17, 12, 0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-radius: 32px;
+      padding: 36px 22px 28px 22px;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85),
+                  0 0 35px rgba(217, 131, 36, 0.16);
+      border: 1.5px solid rgba(224, 159, 92, 0.3);
+    }
+
+    /* Contenedor del Logo con halo ámbar */
+    .avatar-wrapper {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 16px auto;
+    }
+
+    .avatar-halo {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f3c27e, #b86b24, #663309, #fae0b8);
+      filter: blur(6px);
+      opacity: 0.85;
+    }
+
+    /* Imagen del logo ajustada para no desbordar */
+    .avatar {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: contain;
+      padding: 6px;
+      background: #ffffff;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      display: block;
+    }
+
+    /* Tipografía de la marca */
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #fbf7ee;
+      margin-bottom: 2px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .sub-brand {
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 3.5px;
+      color: #e09f5c;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .tagline {
+      font-size: 0.88rem;
+      color: #d6c7b2;
+      line-height: 1.4;
+      margin-bottom: 20px;
+      padding: 0 8px;
+    }
+
+    /* Píldoras temáticas */
+    .pills {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: rgba(224, 159, 92, 0.12);
+      border: 1px solid rgba(224, 159, 92, 0.28);
+      color: #f3c27e;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    /* Botonera */
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 15px 18px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #ffffff !important;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.15s ease, filter 0.15s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn svg {
+      width: 21px;
+      height: 21px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* Botón WhatsApp */
+    .btn-wa {
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.28);
+    }
+
+    /* Botón Instagram */
+    .btn-ig {
+      background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      box-shadow: 0 6px 20px rgba(220, 39, 67, 0.28);
+    }
+
+    /* Botón TikTok */
+    .btn-tt {
+      background: #0f0a07;
+      border: 1px solid rgba(224, 159, 92, 0.4);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(224, 159, 92, 0.2);
+    }
+    .btn-maps {
+      background: linear-gradient(135deg, #c27d38 0%, #8c4a16 100%);
+      border: 1px solid rgba(243, 194, 126, 0.35);
+      box-shadow: 0 6px 20px rgba(194, 125, 56, 0.3);
+    }
+
+    .footer {
+      border-top: 1px solid rgba(224, 159, 92, 0.18);
+      padding-top: 14px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #e09f5c;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="coffee-glow"></div>
+
+  <div class="card">
+    
+    <!-- Logo oficial con aura cálida -->
+    <div class="avatar-wrapper">
+      <div class="avatar-halo"></div>
+      <img class="avatar" src="logoCOFFE.png" alt="Logo Cola'o Coffee Cream">
+    </div>
+
+    <!-- Título y subtítulo -->
+    <h1>Cola'o</h1>
+    <div class="sub-brand">Coffee Cream</div>
+
+    <div class="pills">
+      <span class="pill">☕ Café</span>
+      <span class="pill">🍦 Cream</span>
+      <span class="pill">✨ Especialidad</span>
+    </div>
+
+    <p class="tagline">El punto perfecto para disfrutar el mejor café y momentos únicos. ¡Conéctate con nosotros!</p>
+
+    <!-- Enlaces directos -->
+    <div class="btn-container">
+
+      <!-- WhatsApp Directo -->
+      <a class="btn btn-wa" href="https://wa.me/573218104618?text=Hola%20Cola'o,%20vengo%20desde%20su%20tarjeta%20NFC%20y%20quiero%20hacer%20un%20pedido" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+        Escríbenos al WhatsApp
+      </a>
+
+      <!-- Instagram Oficial -->
+      <a class="btn btn-ig" href="https://www.instagram.com/somoscolao/" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Síguenos en Instagram
+      </a>
+
+      <!-- TikTok Oficial -->
+      <a class="btn btn-tt" href="https://www.tiktok.com/@colao.coffee.crea" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        Videos en TikTok
+      </a>
+      <!-- Calificar en Google Maps (Enlace directo a reseña) -->
+      <a class="btn btn-maps" href="https://g.page/r/Cb_tGVsZtUlGEAE/review" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Califícanos en Google Maps
+      </a>
+
+    </div>
+
+    <div class="footer">
+      ☕ Tarjeta NFC Oficial • Cola'o
+    </div>
+
+  </div>
+
+</body>
+</html>
