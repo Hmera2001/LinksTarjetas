@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mega Fiesta • Piñatería y Juguetería</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=Montserrat:wght@600;700;800;900&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Fredoka', 'Montserrat', -apple-system, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 26px 16px;
+      background: radial-gradient(circle at 50% 15%, #4a148c 0%, #1a237e 45%, #0d133a 100%);
+      color: #ffffff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .party-glow {
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 340px;
+      height: 340px;
+      background: radial-gradient(circle, rgba(233, 30, 99, 0.35) 0%, rgba(255, 235, 59, 0.15) 50%, transparent 75%);
+      filter: blur(45px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 410px;
+      background: rgba(18, 24, 66, 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 32px;
+      padding: 26px 20px 28px 20px;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8),
+                  0 0 35px rgba(21, 101, 192, 0.35);
+      border: 2px solid #ffeb3b;
+    }
+
+    /* Contenedor Rectangular Panorámico */
+    .banner-wrapper {
+      position: relative;
+      width: 100%;
+      border-radius: 20px;
+      padding: 3px;
+      background: linear-gradient(135deg, #ffeb3b, #e91e63, #00e5ff);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 235, 59, 0.3);
+      margin-bottom: 18px;
+    }
+
+    .banner-img {
+      width: 100%;
+      height: auto;
+      max-height: 210px;
+      border-radius: 18px;
+      object-fit: contain;
+      background: #0d133a;
+      display: block;
+    }
+
+    .brand-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #ffffff 10%, #ffeb3b 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
+      margin-bottom: 2px;
+    }
+
+    .sub-brand {
+      display: inline-block;
+      padding: 4px 16px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #e91e63, #c2185b);
+      color: #ffffff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(233, 30, 99, 0.35);
+    }
+
+    .bio {
+      font-size: 0.88rem;
+      color: #e0e7ff;
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .tag {
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(255, 235, 59, 0.12);
+      border: 1px solid rgba(255, 235, 59, 0.35);
+      color: #ffeb3b;
+    }
+
+    .location-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px dashed rgba(255, 235, 59, 0.35);
+      border-radius: 16px;
+      padding: 12px 14px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.35;
+    }
+
+    .location-box span {
+      font-size: 1.1rem;
+    }
+
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 15px 18px;
+      border-radius: 18px;
+      text-decoration: none;
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: #ffffff !important;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn svg {
+      width: 21px;
+      height: 21px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .btn-wa {
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-ig {
+      background: linear-gradient(135deg, #e91e63 0%, #9c27b0 50%, #3f51b5 100%);
+      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.35);
+    }
+
+    .footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 14px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #ffeb3b;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="party-glow"></div>
+
+  <div class="card">
+    
+    <!-- Imagen Rectangular Completa -->
+    <div class="banner-wrapper">
+      <img class="banner-img" src="logoCuadrado.jpeg" alt="Aviso Mega Fiesta">
+    </div>
+
+    <div class="brand-title">MEGA FIESTA</div>
+    <div class="sub-brand">Piñatería y Juguetería</div>
+
+    <div class="tags-container">
+      <span class="tag">🎉 Piñatas</span>
+      <span class="tag">🎈 Globos & Decoración</span>
+      <span class="tag">🧸 Juguetería</span>
+    </div>
+
+    <p class="bio">¡El héroe de tus celebraciones! Todo lo que necesitas para tu fiesta en un solo lugar.</p>
+
+    <!-- Sede física -->
+    <div class="location-box">
+      <span>📍</span>
+      <div>Carrera 10 con Calle 6ta Esquina<br><small style="color: #ffeb3b;">Enseguida de Servientrega</small></div>
+    </div>
+
+    <!-- Botonera -->
+    <div class="btn-container">
+
+      <!-- WhatsApp Directo -->
+      <a class="btn btn-wa" href="https://wa.me/573234805629?text=Hola%20Mega%20Fiesta,%20quiero%20hacer%20un%20pedido%20o%20consultar%20decoración" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+        Escríbenos al WhatsApp
+      </a>
+
+      <!-- Instagram Oficial -->
+      <a class="btn btn-ig" href="https://www.instagram.com/megafiesta228?psln=aW9haDNpazZqZjIx&utm_source=qr" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Síguenos en Instagram
+      </a>
+
+    </div>
+
+    <div class="footer">
+      🎈 Tarjeta NFC Oficial • Mega Fiesta
+    </div>
+
+  </div>
+
+</body>
+</html>
