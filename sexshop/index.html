@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Sex Shop Andrea • Santander de Quilichao</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;1,500;1,600&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', -apple-system, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Fondo degradado negro ultra oscuro */
+    body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 16px;
+    background: 
+        linear-gradient(rgba(8, 0, 2, 0.25), rgba(8, 0, 2, 0.55)), /* Capa oscura para dar sensualidad y legibilidad */
+        url('fondoLenceriac.avif') no-repeat center center / cover; /* Tu imagen vertical */
+    background-size: auto 100%;
+    background-attachment: fixed;
+    color: #ffffff;
+    overflow-x: hidden;
+    position: relative;
+    }
+
+    /* Contenedor central fluido */
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 395px;
+      padding: 20px 14px 24px 14px;
+      text-align: center;
+    }
+
+    /* Halo Neón Rojo del Logo */
+    .avatar-wrapper {
+      position: relative;
+      width: 210px;
+      height: 210px;
+      margin: 0 auto 18px auto;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(135deg, #ff2e3a, #e60012, #99000a);
+      box-shadow: 0 0 45px rgba(230, 0, 18, 0.7),
+                  0 0 15px rgba(255, 77, 85, 0.9);
+    }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #ffffff;
+      padding: 2px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Tipografías del Título */
+    .brand-sup {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: #e5878c;
+      margin-bottom: 2px;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #e61d2b;
+      line-height: 1.1;
+      margin-bottom: 4px;
+      text-shadow: 0 0 18px rgba(230, 29, 43, 0.45);
+    }
+
+    .sub-brand {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 6px;
+      color: #dfd7da;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    /* Chips con micro-borde iluminado */
+/* Tags alineados uniformemente en una sola línea */
+    .tags {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    width: 100%;
+    }
+
+    .tag {
+    flex: 1; /* Distribuye el mismo ancho a cada tag para alineación exacta */
+    text-align: center;
+    white-space: nowrap; /* Evita que el texto se rompa en dos líneas */
+    font-size: 0.70rem;
+    font-weight: 600;
+    padding: 6px 4px;
+    border-radius: 20px;
+    background: rgba(28, 20, 23, 0.75);
+    border: 1px solid rgba(230, 29, 43, 0.45);
+    color: #ffb8be;
+    letter-spacing: 0.2px;
+    box-shadow: 0 2px 8px rgba(230, 29, 43, 0.12);
+    }
+
+    .bio {
+      font-size: 0.84rem;
+      color: #c9c0c3;
+      line-height: 1.45;
+      margin-bottom: 18px;
+      padding: 0 10px;
+    }
+
+    /* Pastilla de Ubicación */
+    .location-box {
+      background: rgba(26, 18, 21, 0.7);
+      border: 1px solid rgba(230, 29, 43, 0.38);
+      border-radius: 18px;
+      padding: 10px 14px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: #f7bec2;
+      line-height: 1.35;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .location-box svg {
+      width: 18px;
+      height: 18px;
+      fill: #e61d2b;
+      flex-shrink: 0;
+    }
+
+    /* Botonera */
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 18px;
+      text-decoration: none;
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #ffffff !important;
+      position: relative;
+      transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+      cursor: pointer;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* Botón Catálogo con Resplandor Neón Rojo */
+    .btn-catalogo {
+      background: linear-gradient(180deg, #f02433 0%, #ba0512 100%);
+      border: 1.5px solid rgba(255, 120, 130, 0.85);
+      box-shadow: 0 0 28px rgba(230, 15, 30, 0.75),
+                  0 4px 12px rgba(0, 0, 0, 0.5),
+                  inset 0 1px 3px rgba(255, 255, 255, 0.4);
+      color: #ffffff !important;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    /* Botones Secundarios Dark Glass */
+    .btn-dark-glass {
+      background: linear-gradient(180deg, rgba(34, 27, 30, 0.85) 0%, rgba(20, 15, 17, 0.95) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+      color: #f5edef !important;
+    }
+    .btn-dark-glass:hover {
+      border-color: rgba(230, 29, 43, 0.4);
+    }
+
+    /* Icono WhatsApp Verde Original */
+    .btn-wa-icon {
+      fill: #25D366 !important;
+    }
+
+    /* Borde sutil rosado/vino en Instagram */
+    .btn-ig-tint {
+      border: 1px solid rgba(225, 48, 108, 0.35);
+      background: linear-gradient(180deg, rgba(42, 26, 33, 0.85) 0%, rgba(22, 14, 18, 0.95) 100%);
+    }
+
+    .footer {
+      border-top: 1px dashed rgba(230, 29, 43, 0.35);
+      padding-top: 16px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #ea7078;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    
+    <!-- Logo Redondo con Halo Rojo Neón -->
+    <div class="avatar-wrapper">
+      <div class="avatar-inner">
+        <img class="avatar" src="logosexshop.jpeg" alt="Logo Tienda Sex Shop Andrea">
+      </div>
+    </div>
+
+    <!-- Títulos de Marca -->
+    <div class="brand-sup">Tienda erotica</div>
+
+    <!-- Chips temáticos -->
+    <div class="tags">
+      <span class="tag">🔥 Lencería</span>
+      <span class="tag">🟣 Juguetería</span>
+      <span class="tag">🤫 Discreción Total</span>
+    </div>
+
+    <p class="bio">Encuentra los mejores productos para tus momentos íntimos. Envíos 100% discretos y seguros.</p>
+
+    <!-- Pastilla de Ubicación -->
+    <div class="location-box">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      <div>Carrera 9 # 4 - 46 B/Centro<br>Frente a Coprocenva, Santander de Quilichao</div>
+    </div>
+
+    <!-- Botonera -->
+    <div class="btn-container">
+
+      <!-- 1. Catálogo Neón Destacado -->
+      <a class="btn btn-catalogo" href="https://tiendasexshopquilichao.catalogst.com/" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        📖 🛍️ Ver Catálogo Virtual
+      </a>
+
+      <!-- 2. WhatsApp Asesoría -->
+      <a class="btn btn-dark-glass" href="https://wa.me/573106763693?text=Hola%20Tienda%20Sex%20Shop%20Andrea,%20vengo%20desde%20su%20tarjeta%20NFC%20y%20quiero%20hacer%20un%20pedido" target="_blank">
+        <svg class="btn-wa-icon" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+        Asesoría por WhatsApp
+      </a>
+
+      <!-- 3. Instagram Oficial -->
+      <a class="btn btn-dark-glass btn-ig-tint" href="https://www.instagram.com/tienda_sexshop_andrea" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Síguenos en Instagram
+      </a>
+
+      <!-- 4. Facebook Página Oficial -->
+      <a class="btn btn-dark-glass" href="https://www.facebook.com/Tiendasxshopandrea" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Página de Facebook
+      </a>
+
+      <!-- 5. Facebook Perfil -->
+      <a class="btn btn-dark-glass" href="https://www.facebook.com/sexshopp.andrea" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        Perfil de Facebook
+      </a>
+
+    </div>
+
+    <!-- Pie -->
+    <div class="footer">
+      🔥 TARJETA NFC OFICIAL • SEX SHOP ANDREA
+    </div>
+
+  </div>
+
+</body>
+</html>
