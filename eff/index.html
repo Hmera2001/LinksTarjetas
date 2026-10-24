@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EFF • Pandebono, Coffee & Bebidas Creativas</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Lekton, Space Mono, Syne, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lekton:ital,wght@0,400;0,700;1,400&family=Rubik+Mono+One&family=Space+Grotesk:wght@500;700&family=Syne:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            brand: ['"Rubik Mono One"', '"Syne"', 'sans-serif'],
+            lekton: ['"Lekton"', 'monospace'],
+            sans: ['"Inter"', 'sans-serif'],
+            mono: ['"Space Grotesk"', 'sans-serif'],
+          },
+          colors: {
+            eff: {
+              cream: '#E8E6D8',         // Crema base manual
+              ancient: '#73754C',       // Ancient Bonsai
+              matcha: '#9CA764',        // Matcha Cream
+              ecru: '#C6AF81',          // Ecru cálido
+              mossy: '#515437',         // Mossy Green fondo principal
+              mossyDark: '#3e4028',     // Verde musgo profundo sombreado
+              mossyLight: '#5f6341',    // Tono para hover suave
+            }
+          },
+          boxShadow: {
+            'eff-card': '0 8px 24px -4px rgba(30, 32, 18, 0.45)',
+            'eff-glow': '0 0 25px rgba(232, 230, 216, 0.15)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .grunge-overlay {
+      background-image: radial-gradient(rgba(232, 230, 216, 0.04) 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+
+    .eff-btn {
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .eff-btn:hover {
+      transform: translateY(-2px);
+    }
+    .eff-btn:active {
+      transform: scale(0.98);
+    }
+
+    .eff-title-grunge {
+      letter-spacing: -0.04em;
+      text-shadow: 2px 2px 0px rgba(62, 64, 40, 0.8);
+      position: relative;
+    }
+
+    /* Scrollbar personalizada para el menú */
+    .menu-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+    .menu-scroll::-webkit-scrollbar-track {
+      background: rgba(62, 64, 40, 0.5);
+      border-radius: 4px;
+    }
+    .menu-scroll::-webkit-scrollbar-thumb {
+      background: #C6AF81;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-[#2a2c1b] min-h-screen text-eff-cream font-sans flex justify-center items-start sm:py-6 sm:px-4 antialiased selection:bg-eff-ecru selection:text-eff-mossyDark">
+
+  <!-- CONTENEDOR EXCLUSIVAMENTE VERTICAL -->
+  <main class="w-full max-w-[430px] min-h-screen sm:min-h-[920px] bg-eff-mossy text-eff-cream sm:rounded-[38px] shadow-[0_25px_60px_rgba(0,0,0,0.7)] flex flex-col justify-between overflow-hidden relative border-x sm:border border-white/10 grunge-overlay">
+    
+    <!-- CONTENIDO SUPERIOR -->
+    <div class="relative z-10 px-5 pt-6 pb-6">
+
+      <!-- Top bar informativa -->
+      <div class="flex items-center justify-between mb-5">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-eff-mossyDark/70 text-[10px] font-lekton tracking-widest uppercase border border-eff-cream/15 text-eff-cream">
+          <span class="w-2 h-2 rounded-full bg-eff-matcha animate-pulse"></span>
+          Horno Activo • Café Caliente
+        </span>
+
+      </div>
+
+      <!-- SECCIÓN IDENTIDAD DE MARCA -->
+      <header class="flex flex-col items-center text-center mb-6">
+        
+        <!-- Contenedor para imagen del Logo -->
+        <div class="w-40 h-40 rounded-2xl bg-eff-mossyDark/90 p-2.5 shadow-eff-card border border-eff-cream/25 mb-4 relative overflow-hidden group flex items-center justify-center">
+          <div class="w-full h-full bg-eff-cream rounded-xl flex items-center justify-center p-2 overflow-hidden shadow-inner">
+            <img src="logoeff.jpeg" alt="Logo EFF" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'flex flex-col items-center justify-center text-eff-mossyDark font-mono font-bold text-xs\'><span class=\'text-2xl mb-1\'>☕</span><span>SUBIR LOGO</span><span class=\'text-[9px] text-eff-mossy opacity-75\'>logoeff.png</span></div>';">
+          </div>
+        </div>
+
+        <!-- Logotipo tipográfico "EFF" conservado fielmente -->
+        <div class="space-y-1">
+          <h1 class="text-5xl font-brand eff-title-grunge tracking-tighter text-eff-cream uppercase leading-none font-extrabold select-none">
+            EFF
+          </h1>
+
+          <!-- Subtítulos de marca -->
+          <div class="pt-2">
+            <h2 class="text-sm font-lekton font-bold tracking-[0.28em] text-eff-ecru uppercase">
+              PANDEBONO
+            </h2>
+            <p class="text-[11px] font-lekton font-medium tracking-[0.24em] text-eff-cream/90 uppercase mt-0.5">
+              COFFEE &amp; BEBIDAS CREATIVAS
+            </p>
+          </div>
+        </div>
+
+        <!-- Tagline del manual -->
+        <div class="mt-4 inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-eff-ancient/60 border border-eff-cream/20">
+          <span class="text-[10px] font-lekton font-bold tracking-widest uppercase text-eff-cream">
+            GOOD VIBES / GREAT BREWS
+          </span>
+        </div>
+
+        <!-- Breve introducción descriptiva -->
+        <p class="text-xs font-sans text-eff-cream/80 max-w-[320px] mt-3 leading-relaxed">
+          La estrella del pueblo: <span class="text-eff-ecru font-medium">fuerte, elegante y práctica</span>. Servicio exprés, para llevar y recetas recién salidas del horno.
+        </p>
+
+      </header>
+
+      <!-- BOTÓN PRINCIPAL DESTACADO: PEDIDOS POR WHATSAPP (310 8379070) -->
+      <div class="mb-3.5">
+        <a href="https://wa.me/573108379070?text=%C2%A1Hola%20EFF!%20%E2%98%95%20Quiero%20hacer%20un%20pedido." 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="eff-btn w-full bg-eff-cream text-eff-mossyDark font-sans p-4 rounded-2xl flex items-center justify-between shadow-eff-card border-2 border-eff-ecru group cursor-pointer">
+          <div class="flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-xl bg-eff-mossy text-eff-cream flex items-center justify-center shadow-inner group-hover:bg-eff-ancient transition-colors">
+              <i data-lucide="shopping-bag" class="w-6 h-6 stroke-[2.2]"></i>
+            </div>
+            <div class="text-left">
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] font-lekton uppercase font-bold tracking-widest text-eff-ancient">Servicio Exprés</span>
+                <span class="w-2 h-2 rounded-full bg-emerald-600 animate-ping"></span>
+              </div>
+              <span class="text-base font-mono font-bold tracking-tight text-eff-mossyDark block">Pedir por WhatsApp</span>
+            </div>
+          </div>
+          <div class="w-9 h-9 rounded-full bg-eff-mossy/10 flex items-center justify-center group-hover:bg-eff-mossy group-hover:text-eff-cream transition-all">
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </div>
+        </a>
+      </div>
+
+      <!-- BOTÓN VER CARTA & MENÚ DIGITAL COMPLETO -->
+      <div class="mb-3.5">
+        <button onclick="toggleMenuDrawer()" 
+                class="eff-btn w-full bg-eff-mossyDark/90 hover:bg-eff-mossyDark text-eff-cream p-3.5 rounded-2xl flex items-center justify-between border border-eff-cream/20 shadow-md group text-left">
+          <div class="flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-eff-ancient/70 text-eff-cream flex items-center justify-center border border-eff-cream/15 group-hover:border-eff-ecru transition-colors">
+              <i data-lucide="book-open" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-mono font-bold tracking-wide">Menú Digital &amp; Carta Completa</span>
+                <span class="text-[9px] bg-eff-ecru text-eff-mossyDark font-bold px-1.5 py-0.2 rounded font-lekton uppercase">Ver Carta</span>
+              </div>
+              <span class="text-xs text-eff-cream/70 font-sans">Clásicos, Creativas, Brunch &amp; Horneados</span>
+            </div>
+          </div>
+          <i data-lucide="chevron-down" id="menuChevron" class="w-5 h-5 text-eff-ecru transition-transform duration-300"></i>
+        </button>
+      </div>
+
+      <!-- SECCIÓN DESPLEGABLE INTERACTIVA: CARTA CON LOS PRODUCTOS REALES -->
+      <div id="menuDrawer" class="hidden bg-eff-mossyDark/95 rounded-2xl p-4 border border-eff-cream/20 mb-4 transition-all">
+        
+        <!-- Pestañas de categoría reales del Menú -->
+        <div class="flex gap-1.5 overflow-x-auto pb-2 mb-3 scrollbar-none text-[11px] font-lekton font-bold uppercase">
+          <button onclick="filterCategory('all')" class="cat-pill active px-3 py-1.5 rounded-full bg-eff-cream text-eff-mossyDark whitespace-nowrap" data-cat="all">Todos</button>
+          <button onclick="filterCategory('clasicos')" class="cat-pill px-3 py-1.5 rounded-full bg-eff-ancient/60 text-eff-cream whitespace-nowrap" data-cat="clasicos">Clásicos</button>
+          <button onclick="filterCategory('creativas')" class="cat-pill px-3 py-1.5 rounded-full bg-eff-ancient/60 text-eff-cream whitespace-nowrap" data-cat="creativas">Creativas</button>
+          <button onclick="filterCategory('brunch')" class="cat-pill px-3 py-1.5 rounded-full bg-eff-ancient/60 text-eff-cream whitespace-nowrap" data-cat="brunch">Brunch</button>
+          <button onclick="filterCategory('horneados')" class="cat-pill px-3 py-1.5 rounded-full bg-eff-ancient/60 text-eff-cream whitespace-nowrap" data-cat="horneados">Horneados</button>
+        </div>
+
+        <!-- Contenedor con todos los items oficiales -->
+        <div class="space-y-2.5 max-h-[350px] overflow-y-auto pr-1 menu-scroll" id="menuItemsContainer">
+          
+          <!-- ================= CATEGORÍA: CLÁSICOS ================= -->
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="clasicos">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">☕</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Capuchino Especial</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Elige tu toque favorito: Baileys, Ron o Vainilla.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$9.500</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="clasicos">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">☕</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Capuchino</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Shot de café recién molido en base de leche espumada.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$6.500</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="clasicos">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">☕</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Expreso</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Doble shot de café recién molido.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$5.000</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="clasicos">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">☕</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Americano</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Doble expreso en base de agua mineral.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$4.500</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="clasicos">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">🍫</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Chocolate</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Cacao semiamargo en base de leche espumada.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$6.500</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="clasicos">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">☕</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Mocachino</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Expreso y cacao en base de leche espumada.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$7.500</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="clasicos">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">🫖</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Infusión</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Piña y jengibre • Lulo y Matcha • Chai Vainilla.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$3.900</span>
+          </div>
+
+          <!-- ================= CATEGORÍA: CREATIVAS ================= -->
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="creativas">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">🧊</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Ice Americano</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Doble shot de espresso, base de agua y hielo, sin azúcar.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$9.000</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="creativas">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">🌸</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Laguna Rosa</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Base de soda hasta rosa, jarabe blue y jugo de limón natural.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$13.900</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="creativas">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">🍉</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Summer Sandía</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Macerado de sandía, base de soda y jugo de limón natural.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$13.900</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="creativas">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">🫐</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Cielo Lila</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Expresso, base de leche, macerado de arándano y cold foam de Blueberry.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$15.900</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="creativas">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">☕</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Ice Latte</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Expresso, base de leche y cold foam de café.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$13.900</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="creativas">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">✨</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Ice Manto</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Cacao semiamargo, base de leche, expresso, foam café y Milo.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$15.900</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="creativas">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">🍓</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Stberry Matcha</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Puré de fresa, base de leche y cold foam de matcha 10%.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$16.900</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-ecru/30 flex justify-between items-start gap-2" data-category="creativas">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">⭐</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-ecru leading-tight">Bebida de Temporada</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Pregunta por la bebida creativa especial del mes.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">Consultar</span>
+          </div>
+
+          <!-- ================= CATEGORÍA: BRUNCH ================= -->
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="brunch">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">🍳</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Brunch Americano</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Huevos al horno, tocineta, queso mozarella, crema artesanal Eff, fruta y minipandebonos.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$19.000</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="brunch">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">🍳</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Brunch Napolitano</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Huevos al horno en salsa napolitana Eff, jamón, queso mozarella, finas hierbas, fruta y minipandebonos.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$19.000</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="brunch">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">🥐</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Croissant Palermo</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Croissant cuadrado con jamón de cerdo, queso mozarella, tomate cherry confitado al horno y pesto Eff.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$15.000</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="brunch">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">🥐</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Croissant Carmesi</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Croissant cuadrado con tocineta horneada, queso mozarella y crema de pimentón caramelizado Eff.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$15.000</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="brunch">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">🥐</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Espiral Pistacho</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Espiral de croissant relleno de chocolate blanco de pistacho, crema de pistacho y mix de pistacho.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$18.000</span>
+          </div>
+
+          <!-- ================= CATEGORÍA: HORNEADOS ================= -->
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="horneados">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">🧀</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Pandebono Tradicional</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Amasijo fresco, recién horneado cada 40 minutos.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$2.500</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="horneados">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">🥟</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Cambray</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Empanada de almidón de yuca, rellena de dulce de guayaba o arequipe.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$3.500</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="horneados">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">🍮</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Flan de Caramelo</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Cremoso, flan horneado bañado de caramelo y ron.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$8.000</span>
+          </div>
+
+          <div class="menu-item p-2.5 rounded-xl bg-eff-mossy/70 border border-eff-cream/10 flex justify-between items-start gap-2" data-category="horneados">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl">🍰</span>
+              <div>
+                <p class="text-xs font-mono font-bold text-eff-cream leading-tight">Torta Red Velvet</p>
+                <p class="text-[10px] text-eff-cream/70 font-sans">Torta esponjosa con capas dulces de mantequilla.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold text-eff-ecru whitespace-nowrap">$8.000</span>
+          </div>
+
+        </div>
+
+        <!-- Pedir por WhatsApp directo -->
+        <a href="https://wa.me/573108379070?text=%C2%A1Hola%20EFF!%20Revis%C3%A9%20el%20men%C3%BA%20digital%20y%20quiero%20hacer%20un%20pedido." 
+           target="_blank" 
+           class="mt-3 w-full py-2.5 px-3 rounded-xl bg-eff-ecru hover:bg-eff-cream text-eff-mossyDark font-mono font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md">
+          <i data-lucide="send" class="w-3.5 h-3.5"></i>
+          Enviar Pedido por WhatsApp
+        </a>
+      </div>
+
+      <!-- ENLACES DE REDES & RESEÑAS -->
+      <div class="space-y-3 mb-5">
+        
+        <!-- Instagram Oficial -->
+        <a href="https://www.instagram.com/effcoffee" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="eff-btn w-full bg-eff-mossyDark/90 p-3.5 rounded-2xl flex items-center justify-between border border-eff-cream/15 group shadow-sm">
+            <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-xl bg-eff-ancient/70 text-eff-cream border border-eff-cream/10 flex items-center justify-center group-hover:bg-gradient-to-tr group-hover:from-amber-600 group-hover:via-rose-600 group-hover:to-purple-700 transition-all">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                </div>
+                <div class="text-left">
+                <span class="text-sm font-mono font-bold text-eff-cream">Instagram Oficial</span>
+                <span class="block text-xs font-lekton text-eff-ecru">@effcoffee</span>
+                </div>
+            </div>
+            <i data-lucide="external-link" class="w-4 h-4 text-eff-cream/60 group-hover:text-eff-cream transition-colors"></i>
+        </a>
+
+        <!-- TikTok Oficial -->
+        <a href="https://www.tiktok.com/@effcoffee" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="eff-btn w-full bg-eff-mossyDark/90 p-3.5 rounded-2xl flex items-center justify-between border border-eff-cream/15 group shadow-sm">
+          <div class="flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-eff-ancient/70 text-eff-cream border border-eff-cream/10 flex items-center justify-center group-hover:bg-[#000000] group-hover:text-white transition-all">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+              </svg>
+            </div>
+            <div class="text-left">
+              <span class="text-sm font-mono font-bold text-eff-cream">TikTok Oficial</span>
+              <span class="block text-xs font-lekton text-eff-ecru">@effcoffee</span>
+            </div>
+          </div>
+          <i data-lucide="external-link" class="w-4 h-4 text-eff-cream/60 group-hover:text-eff-cream transition-colors"></i>
+        </a>
+
+        <!-- Reseñas de Google Maps -->
+        <a href="https://www.google.com/maps/place/Eff+Coffee/@3.0057703,-76.4823317,19z/data=!4m8!3m7!1s0x8e307f79770c90cb:0x2b5ea46844297190!8m2!3d3.005769!4d-76.481688!9m1!1b1!16s%2Fg%2F11zyrdlc6y?hl=es-419&entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="eff-btn w-full bg-eff-mossyDark/90 p-3.5 rounded-2xl flex items-center justify-between border border-eff-cream/15 group shadow-sm">
+          <div class="flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-eff-ancient/70 text-eff-ecru border border-eff-cream/10 flex items-center justify-center group-hover:bg-[#4285F4] group-hover:text-white transition-all">
+              <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+            </div>
+            <div class="text-left">
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-mono font-bold text-eff-cream">Reseñas en Google</span>
+                <span class="text-[10px] text-eff-ecru font-mono font-bold">★ 5.0</span>
+              </div>
+              <span class="block text-xs font-lekton text-eff-cream/70">Califícanos y déjanos tu opinión</span>
+            </div>
+          </div>
+          <i data-lucide="external-link" class="w-4 h-4 text-eff-cream/60 group-hover:text-eff-cream transition-colors"></i>
+        </a>
+
+        <!-- Ubicación & Horario -->
+        <button onclick="openLocationModal()" 
+                class="eff-btn w-full bg-eff-mossyDark/90 p-3.5 rounded-2xl flex items-center justify-between border border-eff-cream/15 group shadow-sm text-left">
+          <div class="flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-eff-ancient/70 text-eff-cream border border-eff-cream/10 flex items-center justify-center group-hover:bg-eff-ecru group-hover:text-eff-mossyDark transition-colors">
+              <i data-lucide="map-pin" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <span class="text-sm font-mono font-bold text-eff-cream">Ubicación &amp; Horarios</span>
+              <span class="block text-xs text-eff-cream/70 font-sans">Santander de Quilichao • Hornadas diarias</span>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-eff-cream/60 group-hover:text-eff-cream transition-colors"></i>
+        </button>
+
+      </div>
+
+      <!-- BOTÓN COPIAR ENLACE RÁPIDO -->
+      <div class="flex items-center justify-center mb-2">
+        <button onclick="copyProfileLink()" class="inline-flex items-center gap-1.5 text-[11px] font-lekton uppercase tracking-wider text-eff-cream/70 hover:text-eff-cream font-medium px-4 py-2 rounded-full bg-eff-mossyDark/80 border border-eff-cream/15 transition">
+          <i data-lucide="link" class="w-3.5 h-3.5 text-eff-ecru"></i>
+          <span>Copiar enlace de EFF</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- FOOTER INFERIOR -->
+    <footer class="relative z-10 text-center py-4 px-6 border-t border-eff-cream/10 bg-eff-mossyDark/90 text-eff-cream/70">
+      <p class="font-brand text-xs tracking-wider text-eff-cream">EFF</p>
+      <p class="font-lekton text-[10px] tracking-[0.25em] text-eff-ecru uppercase mt-0.5">
+        PANDEBONO • COFFEE &amp; BEBIDAS CREATIVAS
+      </p>
+      <p class="text-[9px] font-sans text-eff-cream/50 mt-1">
+        GOOD VIBES / GREAT BREWS • Hornadas continuas cada 40 min
+      </p>
+      <p class="text-[9px] text-eff-cream/40 mt-1.5">© <span id="yearSpan"></span> EFF Brand. Todos los derechos reservados.</p>
+    </footer>
+
+  </main>
+
+  <!-- MODAL UBICACIÓN Y HORARIOS -->
+  <div id="locationModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-eff-mossyDark text-eff-cream rounded-3xl max-w-sm w-full p-6 text-center relative border border-eff-cream/20 shadow-2xl">
+      <button onclick="closeLocationModal()" class="absolute top-4 right-4 text-eff-cream/60 hover:text-eff-cream p-1.5 rounded-full bg-eff-mossy">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="w-14 h-14 rounded-2xl bg-eff-ancient text-eff-ecru flex items-center justify-center mx-auto mb-4 border border-eff-cream/20">
+        <i data-lucide="map-pin" class="w-7 h-7"></i>
+      </div>
+
+      <h3 class="text-lg font-mono font-bold text-eff-cream tracking-tight mb-1">Visítanos en EFF</h3>
+      <p class="text-xs font-lekton text-eff-ecru uppercase tracking-widest mb-4">Santander de Quilichao</p>
+      
+      <div class="space-y-2.5 text-left text-xs mb-5">
+        <div class="p-3 rounded-xl bg-eff-mossy border border-eff-cream/10">
+          <p class="font-mono font-bold text-eff-ecru text-[11px] uppercase">📍 Sede</p>
+          <p class="text-eff-cream mt-0.5">Eff Coffee • Santander de Quilichao, Cauca</p>
+          <p class="text-[10px] text-eff-cream/60 mt-0.5">Ambiente cómodo, café de especialidad y pandebonos calientes</p>
+        </div>
+
+        <div class="p-3 rounded-xl bg-eff-mossy border border-eff-cream/10">
+          <p class="font-mono font-bold text-eff-ecru text-[11px] uppercase">⏰ Horario</p>
+          <p class="text-eff-cream mt-0.5">Lunes a Sábado: 7:00 AM – 7:30 PM</p>
+          <p class="text-eff-cream mt-0.5">Domingos &amp; Festivos: 8:00 AM – 5:00 PM</p>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <a href="https://www.google.com/maps/place/Eff+Coffee/@3.0057703,-76.4823317,19z/data=!4m8!3m7!1s0x8e307f79770c90cb:0x2b5ea46844297190!8m2!3d3.005769!4d-76.481688!9m1!1b1!16s%2Fg%2F11zyrdlc6y?hl=es-419&entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D" 
+           target="_blank" 
+           class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-eff-cream text-eff-mossyDark font-mono font-bold text-xs uppercase tracking-wider transition shadow-md">
+          <i data-lucide="navigation" class="w-4 h-4"></i>
+          Abrir en Google Maps
+        </a>
+        <button onclick="closeLocationModal()" class="w-full py-2 text-eff-cream/50 hover:text-eff-cream text-xs transition">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST DE NOTIFICACIÓN -->
+  <div id="toastMessage" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-eff-mossyDark text-eff-cream px-4 py-2.5 rounded-full text-xs shadow-2xl flex items-center gap-2 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none z-50 border border-eff-ecru/50">
+    <i data-lucide="check-circle-2" class="w-4 h-4 text-eff-matcha"></i>
+    <span id="toastText" class="text-eff-cream font-mono">Enlace copiado con éxito</span>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    document.getElementById('yearSpan').textContent = new Date().getFullYear();
+
+    function toggleMenuDrawer() {
+      const drawer = document.getElementById('menuDrawer');
+      const chevron = document.getElementById('menuChevron');
+      const isHidden = drawer.classList.contains('hidden');
+
+      if (isHidden) {
+        drawer.classList.remove('hidden');
+        chevron.classList.add('rotate-180');
+      } else {
+        drawer.classList.add('hidden');
+        chevron.classList.remove('rotate-180');
+      }
+      lucide.createIcons();
+    }
+
+    function filterCategory(cat) {
+      const pills = document.querySelectorAll('.cat-pill');
+      pills.forEach(pill => {
+        if (pill.dataset.cat === cat) {
+          pill.classList.remove('bg-eff-ancient/60', 'text-eff-cream');
+          pill.classList.add('bg-eff-cream', 'text-eff-mossyDark');
+        } else {
+          pill.classList.remove('bg-eff-cream', 'text-eff-mossyDark');
+          pill.classList.add('bg-eff-ancient/60', 'text-eff-cream');
+        }
+      });
+
+      const items = document.querySelectorAll('.menu-item');
+      items.forEach(item => {
+        if (cat === 'all' || item.dataset.category === cat) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    function openLocationModal() {
+      document.getElementById('locationModal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+    function closeLocationModal() {
+      document.getElementById('locationModal').classList.add('hidden');
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toastMessage');
+      const toastText = document.getElementById('toastText');
+      toastText.textContent = message;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3000);
+    }
+
+    function copyProfileLink() {
+      const dummyInput = document.createElement('input');
+      dummyInput.value = window.location.href;
+      document.body.appendChild(dummyInput);
+      dummyInput.select();
+      try {
+        document.execCommand('copy');
+        showToast('¡Enlace de EFF copiado!');
+      } catch (err) {
+        showToast('Copia el link del navegador');
+      }
+      document.body.removeChild(dummyInput);
+    }
+
+    function shareProfile() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'EFF • Pandebono, Coffee & Bebidas Creativas',
+          text: 'Café de especialidad, bebidas creativas y pandebonos calientes en Santander de Quilichao.',
+          url: window.location.href
+        }).catch(() => copyProfileLink());
+      } else {
+        copyProfileLink();
+      }
+    }
+  </script>
+</body>
+</html>
