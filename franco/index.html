@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Franko Rodriguez • Enlaces Oficiales</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Great+Vibes&family=Montserrat:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            title: ['"Cinzel"', 'serif'],
+            script: ['"Great Vibes"', 'cursive'],
+            sans: ['"Montserrat"', 'sans-serif'],
+            mono: ['"Space Grotesk"', 'sans-serif'],
+          },
+          colors: {
+            darkVoid: '#040406',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Efecto Cromo Plata Líquida */
+    .chrome-silver-text {
+      background: linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 22%, #64748B 46%, #FFFFFF 52%, #94A3B8 76%, #334155 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0px 3px 6px rgba(255, 255, 255, 0.2));
+    }
+
+    /* Brillo en barrido continuo */
+    @keyframes metallicSweep {
+      0% { transform: translateX(-150%) skewX(-20deg); }
+      50%, 100% { transform: translateX(200%) skewX(-20deg); }
+    }
+
+    .shimmer-active {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shimmer-active::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        90deg, 
+        transparent 20%, 
+        rgba(255, 255, 255, 0.16) 50%, 
+        transparent 80%
+      );
+      animation: metallicSweep 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      pointer-events: none;
+    }
+
+    /* Contenedor plateado biselado para el logo */
+    .silver-logo-frame {
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 25%, #475569 50%, #ffffff 55%, #94a3b8 75%, #1e293b 100%);
+      box-shadow: 0 0 35px rgba(255, 255, 255, 0.2), 0 15px 35px rgba(0, 0, 0, 0.9);
+      padding: 3.5px;
+    }
+
+    .silver-logo-inner {
+      background: radial-gradient(circle at 50% 30%, #171821 0%, #08080c 70%, #030305 100%);
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.9), inset 0 0 12px rgba(255, 255, 255, 0.08);
+    }
+
+    /* Tarjetas de lujo oscuras */
+    .luxury-card {
+      background: linear-gradient(145deg, rgba(20, 20, 25, 0.88) 0%, rgba(8, 8, 12, 0.96) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .luxury-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.32);
+      box-shadow: 0 14px 35px -6px rgba(0, 0, 0, 0.95), inset 0 1px 2px rgba(255, 255, 255, 0.35);
+    }
+
+    .luxury-card:active {
+      transform: scale(0.985);
+    }
+
+    /* Línea tricolor mexicana */
+    .mexico-bar {
+      height: 2px;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        #006847 20%, 
+        #006847 40%, 
+        #FFFFFF 42%, 
+        #FFFFFF 58%, 
+        #CE1126 60%, 
+        #CE1126 80%, 
+        transparent 100%
+      );
+    }
+  </style>
+</head>
+<body class="bg-[#020203] text-gray-200 min-h-screen flex justify-center items-center sm:py-6 antialiased selection:bg-white selection:text-black">
+
+  <!-- CONTENEDOR VERTICAL MÓVIL ESTRICTO -->
+  <main class="w-full max-w-[420px] min-h-screen sm:min-h-[890px] bg-darkVoid flex flex-col justify-between overflow-hidden relative sm:rounded-[40px] sm:border sm:border-white/10 shadow-[0_0_70px_rgba(0,0,0,0.95)]">
+    
+    <!-- Luces de atmósfera plateada y destello central -->
+    <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-80 h-80 bg-white/[0.05] rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 bg-amber-500/[0.03] rounded-full blur-3xl pointer-events-none"></div>
+
+    <!-- SECCIÓN DE CONTENIDO PRINCIPAL -->
+    <div class="relative z-10 px-5 pt-7 pb-4 flex flex-col items-center text-center">
+
+      <!-- BADGE SUPERIOR VERIFICADO -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-4 shadow-inner">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span class="text-[10px] font-mono tracking-[0.25em] uppercase text-gray-300 font-bold">Perfil Oficial Verificado</span>
+      </div>
+
+      <!-- CONTENEDOR DEL LOGO CON BORDE PLATEADO BISELADO -->
+      <div class="w-full max-w-[320px] flex flex-col items-center mb-4">
+        
+        <!-- Cambia 'w-48 h-48' a 'w-56 h-56' o 'w-64 h-64' si deseas agrandarlo aún más -->
+        <div class="silver-logo-frame w-48 h-48 sm:w-52 sm:h-52 rounded-3xl relative flex items-center justify-center mb-3">
+          <div class="silver-logo-inner w-full h-full rounded-[22px] flex items-center justify-center p-3.5 overflow-hidden relative">
+            
+            <img src="logofranco.jpeg" 
+                 alt="Logo Franko Rodriguez" 
+                 class="w-full h-full object-contain filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.8)] transition-transform duration-300"
+                 style="transform: scale(1.12);" 
+                 onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center p-2\'><span class=\'text-3xl mb-1\'>🎤</span><span class=\'font-title text-sm tracking-widest text-white font-bold\'>FRANKO RODRIGUEZ</span><span class=\'text-[10px] font-mono text-gray-400 mt-1\'>logofranko.png</span></div>';">
+          </div>
+        </div>
+
+        <!-- Subtítulo artístico -->
+        <span class="text-[10px] font-mono tracking-[0.32em] text-gray-400 uppercase mt-1 font-semibold">
+          Artista &amp; Vocalista
+        </span>
+      </div>
+
+      <!-- INSIGNIA DISCRETA SECUNDARIA: "RAYOS DEL SUR" -->
+      <div class="w-full max-w-[340px] mb-5">
+        <div class="luxury-card rounded-2xl p-2.5 flex items-center justify-between gap-3 border-amber-500/30 bg-gradient-to-r from-black/80 via-zinc-900/90 to-black/80">
+          
+          <!-- Miniatura fiel del Logo Rayos del Sur (Rayo Dorado + Tuba + Script) -->
+          <div class="w-20 h-16 flex-shrink-0 flex items-center justify-center relative">
+            <svg viewBox="0 0 460 380" class="w-full h-full filter drop-shadow-[0_2px_8px_rgba(234,179,8,0.35)]" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="miniGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FFFBEB" />
+                  <stop offset="30%" stop-color="#FDE047" />
+                  <stop offset="60%" stop-color="#CA8A04" />
+                  <stop offset="100%" stop-color="#593E07" />
+                </linearGradient>
+                <radialGradient id="miniTubaBell" cx="45%" cy="45%" r="55%">
+                  <stop offset="0%" stop-color="#FFFDF0" />
+                  <stop offset="40%" stop-color="#FCD34D" />
+                  <stop offset="80%" stop-color="#B45309" />
+                  <stop offset="100%" stop-color="#1A0D00" />
+                </radialGradient>
+              </defs>
+
+              <path d="M260 210 C 230 180, 220 280, 290 300 C 350 320, 390 250, 340 180 C 320 150, 290 150, 275 165" fill="none" stroke="url(#miniGold)" stroke-width="26" stroke-linecap="round"/>
+              <ellipse cx="295" cy="118" rx="68" ry="68" fill="url(#miniTubaBell)" stroke="url(#miniGold)" stroke-width="4"/>
+              <ellipse cx="295" cy="118" rx="34" ry="34" fill="#140a02" stroke="#B45309" stroke-width="3"/>
+
+              <polygon points="215,22 170,128 226,128 175,268 268,142 208,142 254,22" fill="url(#miniGold)" stroke="#FFFBEB" stroke-width="3"/>
+
+              <text x="24" y="278" font-family="'Great Vibes', cursive" font-size="108" font-weight="bold" fill="url(#miniGold)" stroke="#FFFDE6" stroke-width="1.8">Rayos</text>
+              <text x="262" y="222" font-family="'Great Vibes', cursive" font-size="72" font-weight="bold" fill="url(#miniGold)" stroke="#FFFDE6" stroke-width="1.4">del</text>
+              <text x="310" y="280" font-family="'Great Vibes', cursive" font-size="112" font-weight="bold" fill="url(#miniGold)" stroke="#FFFDE6" stroke-width="1.8">Sur</text>
+            </svg>
+          </div>
+
+          <!-- Información complementaria de la banda -->
+          <div class="text-left flex-1 min-w-0 pr-1">
+            <span class="text-[9px] font-mono uppercase tracking-[0.22em] text-amber-400 font-bold block truncate">
+              Acompañamiento Musical
+            </span>
+            <span class="text-xs font-title font-bold text-white tracking-wider block truncate">
+              Rayos del Sur
+            </span>
+            <div class="mexico-bar w-24 my-1"></div>
+            <span class="text-[8px] font-sans font-extrabold tracking-widest text-gray-400 uppercase block">
+              Banda Regional Mexicana
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CANALES EXCLUSIVOS: WHATSAPP, INSTAGRAM Y TIKTOK -->
+      <div class="w-full space-y-3 mb-5">
+        
+        <!-- 1. WHATSAPP (312 6168644) -->
+        <a href="https://wa.me/573126168644?text=%C2%A1Hola!%20Deseo%20cotizar%20una%20presentaci%C3%B3n%20en%20vivo%20con%20Franko%20Rodriguez." 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="luxury-card shimmer-active w-full p-4 rounded-2xl flex items-center justify-between group cursor-pointer border-emerald-500/30">
+          <div class="flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500/20 via-zinc-900 to-black border border-emerald-400/40 flex items-center justify-center text-emerald-400 group-hover:scale-105 group-hover:border-emerald-400 transition-all shadow-[0_0_15px_rgba(16,185,129,0.25)]">
+              <i data-lucide="message-circle" class="w-6 h-6 stroke-[2.2]"></i>
+            </div>
+            <div class="text-left">
+              <div class="flex items-center gap-1.5">
+                <span class="text-[10px] font-mono tracking-widest uppercase text-emerald-400 font-bold block">Contrataciones</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              </div>
+              <span class="text-base font-title font-bold tracking-wider text-white group-hover:text-emerald-200 transition-colors">WhatsApp</span>
+            </div>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 group-hover:text-emerald-300 group-hover:border-emerald-400/40 transition-all">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </div>
+        </a>
+
+        <!-- 2. INSTAGRAM (@francorodriguez_viral) con SVG NATIVO -->
+        <a href="https://www.instagram.com/francorodriguez_viral" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="luxury-card shimmer-active w-full p-4 rounded-2xl flex items-center justify-between group cursor-pointer border-pink-500/30">
+          <div class="flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500/20 via-zinc-900 to-black border border-pink-400/30 flex items-center justify-center text-pink-400 group-hover:scale-105 group-hover:border-pink-400 transition-all shadow-[0_0_15px_rgba(244,63,94,0.2)]">
+              <svg class="w-6 h-6 fill-current text-pink-400 group-hover:text-white transition-colors" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </div>
+            <div class="text-left">
+              <span class="text-[10px] font-mono tracking-widest uppercase text-pink-400 font-bold block">Fotos &amp; Giras</span>
+              <span class="text-base font-title font-bold tracking-wider text-white group-hover:text-pink-200 transition-colors">Instagram</span>
+            </div>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 group-hover:text-pink-300 group-hover:border-pink-400/40 transition-all">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </div>
+        </a>
+
+        <!-- 3. TIKTOK (@frankorodriguezcanta) -->
+        <a href="https://www.tiktok.com/@frankorodriguezcanta" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="luxury-card shimmer-active w-full p-4 rounded-2xl flex items-center justify-between group cursor-pointer border-cyan-500/30">
+          <div class="flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 via-zinc-900 to-rose-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-300 group-hover:scale-105 group-hover:border-cyan-300 transition-all shadow-[0_0_15px_rgba(6,182,212,0.22)]">
+              <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current filter drop-shadow-[2px_0_0_rgba(255,0,80,0.8)]">
+                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+              </svg>
+            </div>
+            <div class="text-left">
+              <span class="text-[10px] font-mono tracking-widest uppercase text-cyan-400 font-bold block">Videos &amp; Tendencias</span>
+              <span class="text-base font-title font-bold tracking-wider text-white group-hover:text-cyan-200 transition-colors">TikTok</span>
+            </div>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 group-hover:text-cyan-300 group-hover:border-cyan-400/40 transition-all">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- BOTÓN COMPARTIR -->
+      <button onclick="shareBandCard()" 
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] font-mono text-gray-400 hover:text-white transition-all">
+        <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+        <span>Compartir tarjeta de artista</span>
+      </button>
+
+    </div>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="relative z-10 py-4 px-4 text-center border-t border-white/10 bg-black/90 backdrop-blur-md">
+      <div class="flex items-center justify-center gap-2 mb-1">
+        <span class="text-[11px] font-title font-bold chrome-silver-text uppercase">FRANKO RODRIGUEZ</span>
+        <span class="text-gray-600 text-xs">•</span>
+        <span class="text-[10px] font-title font-semibold text-gray-400 uppercase tracking-wider">RAYOS DEL SUR</span>
+      </div>
+      <p class="text-[9px] font-mono tracking-widest text-gray-500 uppercase">
+        Portal Oficial de Enlaces • Música Regional Mexicana
+      </p>
+    </footer>
+
+  </main>
+
+  <!-- NOTIFICACIÓN TOAST -->
+  <div id="toastMessage" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-zinc-900 border border-white/20 text-white px-4 py-2.5 rounded-full text-xs shadow-2xl flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none z-50">
+    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+    <span id="toastText" class="font-mono">Enlace copiado al portapapeles</span>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    function shareBandCard() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Franko Rodriguez • Enlaces Oficiales',
+          text: 'Contacto oficial y redes de Franko Rodriguez',
+          url: window.location.href
+        }).catch(() => copyFallback());
+      } else {
+        copyFallback();
+      }
+    }
+
+    function copyFallback() {
+      const dummy = document.createElement('input');
+      dummy.value = window.location.href;
+      document.body.appendChild(dummy);
+      dummy.select();
+      try {
+        document.execCommand('copy');
+        triggerToast('¡Enlace oficial copiado!');
+      } catch (e) {
+        triggerToast('Listo para compartir');
+      }
+      document.body.removeChild(dummy);
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById('toastMessage');
+      const toastText = document.getElementById('toastText');
+      toastText.textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>
