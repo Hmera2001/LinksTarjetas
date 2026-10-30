@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De Mi Casa Restaurante - Portal</title>
+    
+    <!-- Google Fonts: Bebas Neue (Títulos/Logo estilo) y Montserrat (Lectura clara) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons para los íconos sociales y menú -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#050505',
+                        flame: '#ff9900', // Naranja/Amarillo del logo
+                        flamedark: '#e65c00', // Tono más rojizo para hover/sombras
+                        light: '#fdfdfd'
+                    },
+                    fontFamily: {
+                        bebas: ['"Bebas Neue"', 'sans-serif'],
+                        mont: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #111;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+        }
+
+        /* Contenedor móvil estricto */
+        .mobile-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #050505;
+            position: relative;
+            box-shadow: 0 0 30px rgba(255, 153, 0, 0.05);
+            overflow-y: auto;
+            overflow-x: hidden;
+            border-left: 1px solid #1a1a1a;
+            border-right: 1px solid #1a1a1a;
+        }
+
+        /* Ocultar scrollbar */
+        .mobile-container::-webkit-scrollbar { display: none; }
+        .mobile-container { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Efecto de sombras sólidas (Brutalismo adaptado) */
+        .flame-shadow {
+            box-shadow: 4px 4px 0px #ff9900;
+            transition: all 0.15s ease-in-out;
+        }
+        .flame-shadow:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #ff9900;
+        }
+
+        .dark-shadow {
+            box-shadow: 4px 4px 0px #1a1a1a;
+            transition: all 0.2s ease;
+        }
+        .dark-shadow:hover {
+            box-shadow: 4px 4px 0px #ff9900;
+            border-color: #ff9900;
+        }
+        .dark-shadow:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #ff9900;
+        }
+
+        /* Estilos para el menú desplegable (Accordion) */
+        .menu-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .menu-content.open {
+            max-height: 1200px; /* Suficiente espacio para todo el menú */
+        }
+
+        .menu-item-row {
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+        }
+        .menu-item-row:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body class="text-light font-mont">
+
+    <main class="mobile-container flex flex-col items-center px-6 py-10 relative">
+        
+        <!-- 1. LOGO -->
+        <img src="logomicasa.png" 
+             alt="De Mi Casa Restaurante Logo" 
+             class="w-56 h-auto drop-shadow-[0_0_15px_rgba(255,153,0,0.3)] mb-8">
+
+        <!-- 2. MENÚ DESPLEGABLE -->
+        <div class="w-full mb-8">
+            <button id="menu-toggle" class="w-full bg-darkbg border-2 border-flame text-light font-bebas text-2xl py-4 px-6 flex items-center justify-between flame-shadow hover:bg-flame/10 uppercase tracking-wider outline-none">
+                <div class="flex items-center gap-3">
+                    <i class="ph-fill ph-fire text-flame text-2xl"></i>
+                    Ver Menú
+                </div>
+                <i id="menu-chevron" class="ph-bold ph-caret-down text-flame text-xl transition-transform duration-300"></i>
+            </button>
+
+            <div id="menu-content" class="menu-content flex flex-col bg-[#0a0a0a] border-x-2 border-b-2 border-transparent transition-colors duration-300 mt-1">
+                <div class="p-4 flex flex-col gap-6">
+                    
+                    <!-- Categoría: Hamburguesas -->
+                    <div>
+                        <h3 class="font-bebas text-xl text-flame tracking-wider mb-2 flex items-center gap-2">
+                            <i class="ph-fill ph-hamburger"></i> Hamburguesas
+                        </h3>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-end menu-item-row pb-1">
+                                <span class="text-sm font-semibold">La Criolla de Oro</span>
+                                <span class="text-flame font-bold text-sm">$38.000</span>
+                            </div>
+                            <div class="flex justify-between items-end menu-item-row pb-1">
+                                <span class="text-sm font-semibold">Angus Especial</span>
+                                <span class="text-flame font-bold text-sm">$50.000</span>
+                            </div>
+                            <div class="flex justify-between items-end menu-item-row pb-1">
+                                <span class="text-sm font-semibold">Angus Crispy</span>
+                                <span class="text-flame font-bold text-sm">$26.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Categoría: Salchipapas -->
+                    <div>
+                        <h3 class="font-bebas text-xl text-flame tracking-wider mb-2 flex items-center gap-2">
+                            <i class="ph-fill ph-french-fries"></i> Salchipapas
+                        </h3>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-end menu-item-row pb-1">
+                                <span class="text-sm font-semibold">Salchi Mixta</span>
+                                <span class="text-flame font-bold text-sm text-right leading-tight">desde<br>$35.000</span>
+                            </div>
+                            <div class="flex justify-between items-end menu-item-row pb-1">
+                                <span class="text-sm font-semibold">Salchi Sencilla</span>
+                                <span class="text-flame font-bold text-sm text-right leading-tight">desde<br>$20.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Categoría: Plátano y Más -->
+                    <div>
+                        <h3 class="font-bebas text-xl text-flame tracking-wider mb-2 flex items-center gap-2">
+                            <i class="ph-fill ph-leaf"></i> Plátano y Más
+                        </h3>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-end menu-item-row pb-1">
+                                <span class="text-sm font-semibold">Tostada Especial</span>
+                                <span class="text-flame font-bold text-sm">$30.000</span>
+                            </div>
+                            <div class="flex justify-between items-end menu-item-row pb-1">
+                                <span class="text-sm font-semibold">Canastas de Plátano</span>
+                                <span class="text-flame font-bold text-sm">$25.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Categoría: Comidas Rápidas -->
+                    <div>
+                        <h3 class="font-bebas text-xl text-flame tracking-wider mb-2 flex items-center gap-2">
+                            <i class="ph-fill ph-hot-dog"></i> Comidas Rápidas
+                        </h3>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-end menu-item-row pb-1">
+                                <span class="text-sm font-semibold">Hot Dog Especial</span>
+                                <span class="text-flame font-bold text-sm">$30.000</span>
+                            </div>
+                            <div class="flex justify-between items-end menu-item-row pb-1">
+                                <span class="text-sm font-semibold">Sandwich BBQ Maduro</span>
+                                <span class="text-flame font-bold text-sm">$29.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Categoría: Parrilla -->
+                    <div>
+                        <h3 class="font-bebas text-xl text-flame tracking-wider mb-2 flex items-center gap-2">
+                            <i class="ph-fill ph-fire-simple"></i> Parrilla
+                        </h3>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-end menu-item-row pb-1">
+                                <span class="text-sm font-semibold">Costilla Ahumada</span>
+                                <span class="text-flame font-bold text-sm">$45.000</span>
+                            </div>
+                            <div class="flex justify-between items-end menu-item-row pb-1">
+                                <span class="text-sm font-semibold">Filete de Pollo</span>
+                                <span class="text-flame font-bold text-sm">$30.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Categoría: Bebidas -->
+                    <div>
+                        <h3 class="font-bebas text-xl text-flame tracking-wider mb-2 flex items-center gap-2">
+                            <i class="ph-fill ph-brandy"></i> Bebidas
+                        </h3>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-end menu-item-row pb-1">
+                                <span class="text-sm font-semibold">Limonada Hierba Buena</span>
+                                <span class="text-flame font-bold text-sm">$14.000</span>
+                            </div>
+                            <div class="flex justify-between items-end menu-item-row pb-1">
+                                <span class="text-sm font-semibold">Soda Frutos Amarillos</span>
+                                <span class="text-flame font-bold text-sm">$13.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. SEPARADOR -->
+        <div class="flex items-center gap-4 text-flame opacity-50 mb-8 w-full justify-center">
+            <div class="w-16 h-[1px] bg-flame"></div>
+            <i class="ph-fill ph-star text-sm"></i>
+            <div class="w-16 h-[1px] bg-flame"></div>
+        </div>
+
+        <!-- 4. BOTONES SOCIALES / CONTACTO -->
+        <div class="w-full flex flex-col gap-5">
+            
+            <a href="https://wa.me/573136486915" target="_blank" rel="noopener noreferrer" class="w-full bg-[#050505] border-2 border-[#1a1a1a] text-light font-bebas text-xl py-4 px-6 flex items-center gap-4 dark-shadow hover:bg-[#111] transition-all tracking-wider">
+                <div class="bg-[#25D366]/10 p-2 rounded-full border border-[#25D366]/30">
+                    <i class="ph-fill ph-whatsapp-logo text-2xl text-[#25D366]"></i>
+                </div>
+                <span class="mt-1">Escríbenos al WhatsApp</span>
+            </a>
+
+            <a href="https://www.instagram.com/demicasa_restaurant" target="_blank" rel="noopener noreferrer" class="w-full bg-[#050505] border-2 border-[#1a1a1a] text-light font-bebas text-xl py-4 px-6 flex items-center gap-4 dark-shadow hover:bg-[#111] transition-all tracking-wider">
+                <div class="bg-[#E1306C]/10 p-2 rounded-full border border-[#E1306C]/30">
+                    <i class="ph-fill ph-instagram-logo text-2xl text-[#E1306C]"></i>
+                </div>
+                <span class="mt-1">Síguenos en Instagram</span>
+            </a>
+
+            <a href="https://www.tiktok.com/@demicasa_restaurante" target="_blank" rel="noopener noreferrer" class="w-full bg-[#050505] border-2 border-[#1a1a1a] text-light font-bebas text-xl py-4 px-6 flex items-center gap-4 dark-shadow hover:bg-[#111] transition-all tracking-wider">
+                <div class="bg-light/10 p-2 rounded-full border border-light/30">
+                    <i class="ph-fill ph-tiktok-logo text-2xl text-light"></i>
+                </div>
+                <span class="mt-1">Míranos en TikTok</span>
+            </a>
+
+            <a href="https://www.facebook.com/demicasarestaurant" target="_blank" rel="noopener noreferrer" class="w-full bg-[#050505] border-2 border-[#1a1a1a] text-light font-bebas text-xl py-4 px-6 flex items-center gap-4 dark-shadow hover:bg-[#111] transition-all tracking-wider">
+                <div class="bg-[#1877F2]/10 p-2 rounded-full border border-[#1877F2]/30">
+                    <i class="ph-fill ph-facebook-logo text-2xl text-[#1877F2]"></i>
+                </div>
+                <span class="mt-1">Únete en Facebook</span>
+            </a>
+
+        </div>
+        
+        <!-- FOOTER -->
+        <footer class="mt-12 text-center text-xs text-light/40 font-mont">
+            <p>© 2026 De Mi Casa Restaurante</p>
+        </footer>
+        
+        <!-- Script interactivo para el menú desplegable -->
+        <script>
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuContent = document.getElementById('menu-content');
+            const menuChevron = document.getElementById('menu-chevron');
+
+            menuToggle.addEventListener('click', () => {
+                // Alternar la clase que expande la altura
+                const isOpen = menuContent.classList.toggle('open');
+                
+                if (isOpen) {
+                    menuContent.classList.add('border-flame');
+                    menuContent.classList.remove('border-transparent');
+                    menuChevron.style.transform = 'rotate(180deg)';
+                } else {
+                    menuContent.classList.remove('border-flame');
+                    menuContent.classList.add('border-transparent');
+                    menuChevron.style.transform = 'rotate(0deg)';
+                }
+            });
+        </script>
+    </main>
+
+</body>
+</html>
