@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berakha Perfumes | Boutique Digital</title>
+    
+    <!-- Google Fonts: Playfair Display (Luxury) & Montserrat (Clean/Modern) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        berakhadark: '#0a0a0a',
+                        berakhablack: '#050505',
+                        berakhagold: '#d4af37',
+                        berakhagolddark: '#aa7c11',
+                    },
+                    fontFamily: {
+                        playfair: ['Playfair Display', 'serif'],
+                        montserrat: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #050505;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Particles Background Canvas */
+        #gold-dust {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at center, #1a160b 0%, #050505 70%);
+        }
+
+        /* Mobile App Container */
+        .app-container {
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            box-shadow: 0 0 80px rgba(212, 175, 55, 0.03);
+            background: transparent;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Staggered entrance for cards */
+        .fade-in-stagger {
+            opacity: 0;
+            animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.35s; }
+        .delay-3 { animation-delay: 0.5s; }
+        .delay-4 { animation-delay: 0.65s; }
+
+        /* Metallic Text Gradient */
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #f9f5e8 0%, #d4af37 40%, #aa7c11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0px 4px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Luxury Glass Card */
+        .luxury-card {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 1.25rem;
+            background: rgba(20, 18, 15, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 16px;
+            text-decoration: none;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        /* Card Hover/Active Glow */
+        .luxury-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 16px;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .luxury-card:hover, .luxury-card:active {
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .luxury-card:hover::before, .luxury-card:active::before {
+            opacity: 1;
+        }
+
+        /* Icon Container inside Card */
+        .card-icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(170, 124, 17, 0.05));
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            margin-right: 1rem;
+            color: #d4af37;
+            font-size: 1.5rem;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .luxury-card:hover .card-icon-wrapper {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(170, 124, 17, 0.1));
+            color: #f9f5e8;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Glowing Divider */
+        .glowing-divider {
+            width: 60%;
+            height: 1px;
+            margin: 2rem auto;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent);
+            position: relative;
+        }
+        .glowing-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            width: 6px; height: 6px;
+            border: 1px solid #d4af37;
+            background-color: #050505;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-berakhagold selection:text-black">
+
+    <!-- Gold Dust Particle Canvas -->
+    <canvas id="gold-dust"></canvas>
+
+    <main class="app-container">
+        
+        <!-- Hero Section -->
+        <header class="w-full flex flex-col items-center pt-16 pb-6 px-6">
+            <div class="w-full max-w-[220px] mb-8 animate-float">
+                <img src="logoberakha.png" alt="Berakha Perfumes Logo" class="w-full h-auto object-contain drop-shadow-[0_0_25px_rgba(212,175,55,0.3)]">
+            </div>
+            
+            <div class="text-center space-y-3 fade-in-stagger">
+                <h1 class="font-playfair italic text-2xl tracking-wide text-gold-gradient">Boutique Digital</h1>
+                <p class="font-montserrat font-light text-[11px] text-gray-300 tracking-[0.25em] uppercase">
+                    Descubre Tu Esencia
+                </p>
+            </div>
+        </header>
+
+        <div class="glowing-divider fade-in-stagger delay-1"></div>
+
+        <!-- Links Section -->
+        <section class="w-full px-6 flex flex-col gap-4 pb-12 flex-grow">
+            
+            <!-- Instagram Card -->
+            <a href="https://www.instagram.com/berakha_perfumes" target="_blank" class="luxury-card fade-in-stagger delay-1">
+                <div class="card-icon-wrapper">
+                    <i class="ph ph-instagram-logo"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-playfair text-lg text-gray-100 tracking-wide">Instagram</span>
+                    <span class="font-montserrat font-light text-xs text-[#d4af37] opacity-80 mt-0.5">Síguenos y descubre novedades</span>
+                </div>
+                <i class="ph ph-caret-right ml-auto text-gray-500 text-sm"></i>
+            </a>
+
+            <!-- WhatsApp Card -->
+            <a href="https://wa.me/573167831892" target="_blank" class="luxury-card fade-in-stagger delay-2">
+                <div class="card-icon-wrapper">
+                    <i class="ph ph-whatsapp-logo"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-playfair text-lg text-gray-100 tracking-wide">WhatsApp</span>
+                    <span class="font-montserrat font-light text-xs text-[#d4af37] opacity-80 mt-0.5">Atención y asesoría exclusiva</span>
+                </div>
+                <i class="ph ph-caret-right ml-auto text-gray-500 text-sm"></i>
+            </a>
+
+            <!-- TikTok Card -->
+            <a href="https://www.tiktok.com/@alexisberakh" target="_blank" class="luxury-card fade-in-stagger delay-3">
+                <div class="card-icon-wrapper">
+                    <i class="ph ph-tiktok-logo"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-playfair text-lg text-gray-100 tracking-wide">TikTok</span>
+                    <span class="font-montserrat font-light text-xs text-[#d4af37] opacity-80 mt-0.5">Detrás de cada fragancia</span>
+                </div>
+                <i class="ph ph-caret-right ml-auto text-gray-500 text-sm"></i>
+            </a>
+
+            <!-- Facebook Card -->
+            <a href="https://www.facebook.com/people/Berakhaperfumes/61555122369671" target="_blank" class="luxury-card fade-in-stagger delay-4">
+                <div class="card-icon-wrapper">
+                    <i class="ph ph-facebook-logo"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-playfair text-lg text-gray-100 tracking-wide">Facebook</span>
+                    <span class="font-montserrat font-light text-xs text-[#d4af37] opacity-80 mt-0.5">Únete a nuestra comunidad</span>
+                </div>
+                <i class="ph ph-caret-right ml-auto text-gray-500 text-sm"></i>
+            </a>
+
+        </section>
+
+        <!-- Footer -->
+        <footer class="w-full text-center py-8 mt-auto fade-in-stagger delay-4">
+            <p class="font-montserrat font-extralight text-[9px] text-gray-500 tracking-[0.3em] uppercase">
+                Berakha Perfumes © 2026<br>
+                <span class="text-[#d4af37] opacity-50 mt-2 block">Alta Perfumería</span>
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- Script for Gold Dust Particles -->
+    <script>
+        const canvas = document.getElementById('gold-dust');
+        const ctx = canvas.getContext('2d');
+        
+        let particlesArray = [];
+        const numberOfParticles = 80;
+
+        // Resize canvas
+        function setCanvasSize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', setCanvasSize);
+        setCanvasSize();
+
+        // Particle Class
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5 + 0.5; // very small dust
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                // Gold variations
+                const colors = ['rgba(212, 175, 55, 0.8)', 'rgba(170, 124, 17, 0.6)', 'rgba(249, 245, 232, 0.5)'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.opacity = Math.random();
+                this.fadeSpeed = Math.random() * 0.02 + 0.005;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Wrap around screen
+                if (this.x > canvas.width) this.x = 0;
+                else if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                else if (this.y < 0) this.y = canvas.height;
+
+                // Twinkle effect
+                this.opacity += this.fadeSpeed;
+                if (this.opacity >= 1 || this.opacity <= 0.1) {
+                    this.fadeSpeed = -this.fadeSpeed;
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color.replace(/[\d\.]+\)$/g, `${this.opacity})`);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+    </script>
+</body>
+</html>
