@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante Enigma - Portal</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&family=Special+Elite&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        carbon: '#0d0d0d',
+                        copper: '#263c38',
+                        rust: '#bd6a3a',
+                        beige: '#e3cdab'
+                    },
+                    fontFamily: {
+                        rye: ['Rye', 'serif'],
+                        elite: ['"Special Elite"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #050505;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .mobile-container {
+            width: 100%;
+            max-width: 420px;
+            background-color: #0d0d0d;
+            position: relative;
+            box-shadow: 0 0 25px rgba(0,0,0,0.9);
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .noise-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.15;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .mobile-container::-webkit-scrollbar { display: none; }
+        .mobile-container { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .secondary-shadow {
+            box-shadow: 4px 4px 0px rgba(189, 106, 58, 0.2);
+            transition: all 0.2s ease;
+        }
+        .secondary-shadow:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px rgba(189, 106, 58, 0.2);
+        }
+
+        .menu-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
+        }
+        .menu-content.open {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        /* Sub menu scrollbar */
+        .menu-content::-webkit-scrollbar {
+            width: 3px;
+        }
+        .menu-content::-webkit-scrollbar-thumb {
+            background-color: #bd6a3a;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="text-beige">
+
+    <main class="mobile-container flex flex-col items-center px-5 py-8 relative">
+        <div class="noise-bg"></div>
+
+        <div class="relative z-10 w-full flex flex-col items-center">
+            
+            <!-- LOGO -->
+            <img src="logoenigma.png" 
+                 alt="Logo Restaurante Enigma" 
+                 class="w-60 h-auto drop-shadow-[0_10px_20px_rgba(0,0,0,0.95)] mb-4 rounded-sm"
+                 onerror="this.onerror=null; this.src='logoenigma.png';">
+
+            <!-- TÍTULO -->
+            <h1 class="font-elite text-lg text-center text-beige/90 mb-6 tracking-widest uppercase">
+                Inexplicablemente delicioso 
+            </h1>
+
+            <!-- DIRECCIÓN -->
+            <div class="text-[11px] font-elite text-rust/90 mb-6 tracking-wider text-center border-y border-rust/30 py-1.5 w-full">
+                📍 Kra 10 #9-74 B// Centenario
+            </div>
+
+            <!-- MENÚ DESPLEGABLE COMPLETO -->
+            <div class="w-full mb-8">
+                <button id="menu-toggle" class="w-full bg-transparent border-2 border-rust text-beige font-elite text-base py-3.5 px-5 flex items-center justify-between secondary-shadow hover:bg-white/5 uppercase tracking-widest outline-none">
+                    <div class="flex items-center gap-3">
+                        <i class="ph ph-scroll text-2xl text-rust"></i>
+                        Ver Menú Completo
+                    </div>
+                    <i id="menu-chevron" class="ph ph-caret-down text-xl text-rust transition-transform duration-300"></i>
+                </button>
+
+                <div id="menu-content" class="menu-content flex flex-col gap-4 mt-4 px-1 text-left">
+                    
+                    <!-- 1. SALCHIPAPAS -->
+                    <div class="bg-carbon/80 border border-copper p-3 rounded">
+                        <h3 class="font-rye text-rust text-sm tracking-wider uppercase mb-2 border-b border-copper/50 pb-1">🍟 Salchipapas (Personales & Compartir)</h3>
+                        <div class="space-y-2 text-xs font-elite">
+                            <div class="flex justify-between items-start gap-2">
+                                <span><b>★ Salchimixta</b> (Papa criolla, salchicha llanera, carne BBQ, pollo salsa queso)</span>
+                                <span class="text-rust font-bold whitespace-nowrap">$27.000</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span><b>Salchicarne</b> (Carne de res desmechada BBQ)</span>
+                                <span class="text-rust font-bold whitespace-nowrap">$24.000</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span><b>Salchipollo</b> (Pollo desmechado en salsa crema de queso)</span>
+                                <span class="text-rust font-bold whitespace-nowrap">$23.000</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span><b>★ Antofagasta</b> (Para 2 personas)</span>
+                                <span class="text-rust font-bold whitespace-nowrap">$44.000</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span><b>Mónaco</b> (Para 3 personas con picada)</span>
+                                <span class="text-rust font-bold whitespace-nowrap">$62.000</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span><b>Enigma</b> (Para 4 o 5 personas)</span>
+                                <span class="text-rust font-bold whitespace-nowrap">$75.000</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span><b>Enigma XL</b> (Para 6 o 7 personas)</span>
+                                <span class="text-rust font-bold whitespace-nowrap">$95.000</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span><b>Enigma XXL</b> (Para 8 o 9 personas)</span>
+                                <span class="text-rust font-bold whitespace-nowrap">$135.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+                </div>
+            </div>
+
+            <!-- SEPARADOR VINTAGE -->
+            <div class="flex items-center gap-4 text-rust opacity-70 mb-8">
+                <div class="w-12 h-[2px] bg-rust"></div>
+                <i class="ph-fill ph-diamonds-four text-lg"></i>
+                <div class="w-12 h-[2px] bg-rust"></div>
+            </div>
+
+            <!-- BOTONES DE CONTACTO Y REDES SOCIALES -->
+            <div class="w-full flex flex-col gap-4 mb-6">
+                
+                <!-- 1. WhatsApp -->
+                <a href="https://wa.me/573145543813?text=Hola%20Restaurante%20Enigma,%20quiero%20hacer%20un%20pedido%20a%20domicilio" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="w-full bg-transparent border-2 border-rust text-beige font-elite text-base py-3.5 px-6 flex items-center justify-center gap-3 secondary-shadow hover:bg-white/5 uppercase tracking-widest">
+                    <i class="ph ph-whatsapp-logo text-2xl text-rust"></i>
+                    WhatsApp Pedidos
+                </a>
+
+                <!-- 2. Instagram -->
+                <a href="https://www.instagram.com/enigma_oficial2.0" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="w-full bg-transparent border-2 border-rust text-beige font-elite text-base py-3.5 px-6 flex items-center justify-center gap-3 secondary-shadow hover:bg-white/5 uppercase tracking-widest">
+                    <i class="ph ph-instagram-logo text-2xl text-rust"></i>
+                    Instagram Oficial
+                </a>
+
+                <!-- 3. TikTok -->
+                <a href="https://www.tiktok.com/@enigmaoficial2.0" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="w-full bg-transparent border-2 border-rust text-beige font-elite text-base py-3.5 px-6 flex items-center justify-center gap-3 secondary-shadow hover:bg-white/5 uppercase tracking-widest">
+                    <i class="ph ph-tiktok-logo text-2xl text-rust"></i>
+                    TikTok Oficial
+                </a>
+
+                <!-- 4. Facebook -->
+                <a href="https://www.facebook.com/profile.php?id=100063752996436&rdid=6tgoJYdAx1idXK9o&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1J8d65aWFC%2F#" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="w-full bg-transparent border-2 border-rust text-beige font-elite text-base py-3.5 px-6 flex items-center justify-center gap-3 secondary-shadow hover:bg-white/5 uppercase tracking-widest">
+                    <i class="ph ph-facebook-logo text-2xl text-rust"></i>
+                    Facebook Oficial
+                </a>
+
+            </div>
+
+            <!-- FOOTER -->
+            <footer class="text-center text-[10px] font-elite text-rust/70 tracking-widest uppercase mt-4">
+                Buena comida • Buena música • Buena compañía
+            </footer>
+
+        </div>
+        
+        <script>
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuContent = document.getElementById('menu-content');
+            const menuChevron = document.getElementById('menu-chevron');
+
+            menuToggle.addEventListener('click', () => {
+                menuContent.classList.toggle('open');
+                if (menuContent.classList.contains('open')) {
+                    menuChevron.style.transform = 'rotate(180deg)';
+                } else {
+                    menuChevron.style.transform = 'rotate(0deg)';
+                }
+            });
+        </script>
+    </main>
+
+</body>
+</html>
