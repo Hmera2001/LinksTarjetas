@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Saraí Ruiz | Influencer & Marketing Digital</title>
+        
+        <!-- Google Fonts: Playfair Display & Montserrat -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+        
+        <!-- Phosphor Icons -->
+        <script src="https://unpkg.com/@phosphor-icons/web"></script>
+        
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            bgdark: '#050505',
+                            vinotinto: '#5C1A21',
+                            vinohover: '#4a151a',
+                            light: '#ffffff'
+                        },
+                        fontFamily: {
+                            playfair: ['"Playfair Display"', 'serif'],
+                            mont: ['Montserrat', 'sans-serif']
+                        }
+                    }
+                }
+            }
+        </script>
+        
+        <style>
+            body {
+                background-color: #222;
+                display: flex;
+                justify-content: center;
+                min-height: 100vh;
+                margin: 0;
+            }
+
+            /* Contenedor móvil */
+            .mobile-container {
+                width: 100%;
+                max-width: 400px;
+                background-color: #ffffff;
+                position: relative;
+                overflow-y: auto;
+                overflow-x: hidden;
+                box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            }
+
+            /* Ocultar scrollbar */
+            .mobile-container::-webkit-scrollbar { display: none; }
+            .mobile-container { -ms-overflow-style: none; scrollbar-width: none; }
+        </style>
+    </head>
+    <body class="text-black font-mont">
+
+        <main class="mobile-container flex flex-col min-h-screen">
+            
+            <!-- BLOQUE 1: CABECERA (Fondo Blanco) -->
+            <div class="relative w-full bg-white pt-8 pb-10 px-6 overflow-hidden">
+                <!-- Top Menu -->
+                <div class="flex gap-4 text-[8px] font-bold tracking-widest text-black mb-10 z-10 relative">
+                    <span>SERVICIOS</span>
+                    <span>PORTFOLIO</span>
+                    <span>CONTACTO</span>
+                </div>
+
+                <!-- Text Content -->
+                <div class="w-[60%] relative z-10">
+                    <h1 class="font-playfair italic text-vinotinto text-6xl -mb-2 leading-none tracking-tight">
+                        Saraí
+                    </h1>
+                    <h2 class="font-mont font-black text-black text-[3.5rem] uppercase tracking-tighter leading-none mb-4">
+                        RUIZ
+                    </h2>
+                    <p class="text-[10px] text-gray-800 leading-relaxed mb-6 font-medium pr-2">
+                        Creadora UGC y Agente de Marketing Digital apasionada por construir comunidades de marca.
+                    </p>
+                    <a href="https://wa.me/573216216282" target="_blank" class="inline-block bg-vinotinto text-white text-[10px] font-bold uppercase tracking-widest px-7 py-3 transition-transform active:scale-95">
+                        Contactar
+                    </a>
+                </div>
+
+                <!-- Imagen Absoluta a la derecha -->
+                <div class="absolute top-0 right-0 w-[45%] h-full z-0 flex justify-end">
+                    <img src="logosarai.jpg" alt="Saraí Ruiz" class="w-full h-full object-cover object-[65%_20%] border-l-4 border-white shadow-[-10px_0_20px_rgba(255,255,255,0.8)]">
+                </div>
+            </div>
+
+            <!-- BLOQUE 2: ESTADÍSTICAS (Fondo Vinotinto) -->
+            <div class="w-full bg-vinotinto text-white flex justify-around items-start py-10 px-4">
+
+            </div>
+
+            <!-- BLOQUE 3: ESPECIALIDAD (Fondo Blanco) -->
+            <div class="w-full bg-white py-14 px-6 flex flex-col items-center">
+                <h2 class="font-playfair text-vinotinto text-[1.75rem] italic text-center mb-8">
+                    Áreas de Especialidad
+                </h2>
+                <div class="flex flex-wrap justify-center gap-2.5 max-w-[300px]">
+                    <span class="bg-vinotinto text-white text-[9px] uppercase font-bold tracking-widest px-4 py-2.5 rounded-full shadow-md">Marketing Digital</span>
+                    <span class="bg-vinotinto text-white text-[9px] uppercase font-bold tracking-widest px-4 py-2.5 rounded-full shadow-md">UGC Content</span>
+                    <span class="bg-vinotinto text-white text-[9px] uppercase font-bold tracking-widest px-4 py-2.5 rounded-full shadow-md">Estrategia de Redes</span>
+                    <span class="bg-vinotinto text-white text-[9px] uppercase font-bold tracking-widest px-4 py-2.5 rounded-full shadow-md">Creación de Contenido</span>
+                </div>
+            </div>
+
+            <!-- BLOQUE 4: REDES Y CONTACTO (Fondo Vinotinto) -->
+            <div class="w-full bg-vinotinto text-white py-14 px-8 flex flex-col items-center flex-grow">
+                <h2 class="font-playfair text-white text-[1.75rem] italic text-center mb-10">
+                    Redes y Contacto
+                </h2>
+                
+                <div class="w-full flex flex-col gap-4">
+                    <a href="https://www.instagram.com/sarairuizvel" target="_blank" class="w-full border border-white bg-transparent hover:bg-white hover:text-vinotinto transition-colors py-4 text-center text-[10px] font-bold uppercase tracking-widest flex justify-center items-center gap-2">
+                        <i class="ph-fill ph-instagram-logo text-lg"></i>
+                        Instagram
+                    </a>
+                    
+                    <a href="https://www.tiktok.com/@sarairuizv" target="_blank" class="w-full border border-white bg-transparent hover:bg-white hover:text-vinotinto transition-colors py-4 text-center text-[10px] font-bold uppercase tracking-widest flex justify-center items-center gap-2">
+                        <i class="ph-fill ph-tiktok-logo text-lg"></i>
+                        TikTok
+                    </a>
+                    
+                    <a href="https://wa.me/573216216282" target="_blank" class="w-full bg-white text-vinotinto hover:bg-gray-200 transition-colors py-4 text-center text-[10px] font-bold uppercase tracking-widest flex justify-center items-center gap-2">
+                        <i class="ph-fill ph-whatsapp-logo text-lg"></i>
+                        WhatsApp
+                    </a>
+                </div>
+
+                <div class="mt-16 text-center">
+                    <p class="text-[8px] text-white/50 tracking-widest uppercase">
+                        © 2026 Saraí Ruiz Media Kit
+                    </p>
+                </div>
+            </div>
+
+        </main>
+
+    </body>
+</html>
