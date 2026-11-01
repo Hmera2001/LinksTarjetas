@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joel 2,26 Coffee and Food</title>
+    
+    <!-- Google Fonts: Montserrat & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        joelgreen: '#1a2820',
+                        joelgold: '#c8a97e',
+                        joelgoldhover: '#deb887'
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        playfair: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #111a14; /* Color de fondo exterior para desktop */
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Contenedor móvil central con Textura y Ruido */
+        .mobile-container {
+            width: 100%;
+            max-width: 420px;
+            background-color: #1a2820; /* Verde oscuro oficial */
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(200, 169, 126, 0.15) 0%, transparent 60%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+        }
+
+        /* Ocultar scrollbar */
+        .mobile-container::-webkit-scrollbar { display: none; }
+        .mobile-container { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Estilos de los botones outline */
+        .outline-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+            padding: 0.85rem 1.5rem;
+            border: 1px solid #c8a97e;
+            border-radius: 30px;
+            background: transparent;
+            color: #c8a97e;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .outline-btn:active {
+            background-color: rgba(200, 169, 126, 0.15);
+            transform: scale(0.98);
+        }
+
+        /* Acordeón del Menú Principal */
+        .menu-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+            padding: 0 1rem;
+        }
+        
+        .menu-content.open {
+            max-height: 2000px;
+            opacity: 1;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Sub-acordeones de las categorías */
+        .menu-category {
+            border-bottom: 1px solid rgba(200, 169, 126, 0.2);
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-category:last-child {
+            border-bottom: none;
+        }
+        
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            cursor: pointer;
+            color: #c8a97e;
+        }
+        
+        .category-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+        }
+        
+        .category-content.open {
+            max-height: 1000px;
+            opacity: 1;
+            padding-bottom: 1rem;
+        }
+        
+        .menu-item {
+            margin-bottom: 1rem;
+        }
+        
+        .menu-item-title {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            color: #e5d3b3;
+            margin-bottom: 0.25rem;
+        }
+        
+        .menu-item-desc {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            color: rgba(200, 169, 126, 0.7);
+            line-height: 1.4;
+        }
+
+        /* Detalles sutiles del diseño */
+        .ornament-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c8a97e, transparent);
+            width: 80%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="text-joelgold antialiased">
+
+    <main class="mobile-container flex flex-col min-h-screen relative">
+        
+        <!-- Decoración de esquinas superior -->
+        <svg class="absolute top-0 left-0 w-24 h-24 text-joelgold opacity-20 pointer-events-none" fill="none" viewBox="0 0 100 100">
+            <path stroke="currentColor" stroke-width="1" d="M10,90 L10,10 L90,10"/>
+            <path stroke="currentColor" stroke-width="1" d="M20,80 L20,20 L80,20"/>
+        </svg>
+        <svg class="absolute top-0 right-0 w-24 h-24 text-joelgold opacity-20 pointer-events-none transform rotate-90" fill="none" viewBox="0 0 100 100">
+            <path stroke="currentColor" stroke-width="1" d="M10,90 L10,10 L90,10"/>
+            <path stroke="currentColor" stroke-width="1" d="M20,80 L20,20 L80,20"/>
+        </svg>
+
+        <!-- Cabecera / Logo incrustado -->
+        <header class="w-full flex flex-col items-center pt-16 pb-6 px-8 relative z-10">
+            <img src="logojoel.png" alt="Logo Joel" class="brand-logo mb-2 pointer-events-none">
+            
+            <p class="font-playfair italic text-[13px] mt-2 text-joelgold/80">Especialidad & Sabor</p>
+            <p class="font-montserrat font-light text-[9px] mt-1 tracking-widest uppercase text-joelgold/60">Santander de Quilichao, Cauca</p>
+        </header>
+
+        <!-- Botones y Enlaces -->
+        <section class="w-full px-8 z-10 flex flex-col gap-4 mt-2">
+            
+            <!-- Botón Menú con Acordeón -->
+            <button id="menuToggle" class="outline-btn">
+                <i class="ph ph-coffee text-xl"></i>
+                MENÚ DIGITAL
+                <i id="menuChevron" class="ph ph-caret-down text-lg ml-auto transition-transform duration-300"></i>
+            </button>
+
+            <!-- Contenido del Menú Desplegable (Nested Accordions) -->
+            <div id="menuDropdown" class="menu-content bg-joelgreen/50 rounded-2xl border border-joelgold/20 backdrop-blur-sm">
+                
+                <!-- BRUNCH -->
+                <div class="menu-category">
+                    <div class="category-header">
+                        <h3 class="font-playfair font-bold text-[1.1rem] tracking-wide">Brunch</h3>
+                        <i class="ph ph-plus text-lg transition-transform duration-300"></i>
+                    </div>
+                    <div class="category-content">
+                        <div class="menu-item">
+                            <div class="menu-item-title"><span>Desayuno americano</span> <span>28k</span></div>
+                            <div class="menu-item-desc">tres Waffles, tres huevos, tocinetas, jamón y queso, miel de Maple.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-title"><span>Huevos Poche</span> <span>27k</span></div>
+                            <div class="menu-item-desc">dos Waffles, dos tocinetas, dos huevos escalfados con salsa holandés y fruta.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-title"><span>Escalfado Alfredo</span> <span>29k</span></div>
+                            <div class="menu-item-desc">pollo, tocinetas, crema de leche, queso, huevo escalfado, pan tostado, fruta.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-title"><span>Escalfado Napolitano</span> <span>28k</span></div>
+                            <div class="menu-item-desc">tomate, cebolla, albahaca, 2 huevos, escalfado queso fundido, pan tostado, fruta.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-title"><span>Huevos turcos</span> <span>26k</span></div>
+                            <div class="menu-item-desc">yogur griego, perejil, cilantro, ajo, dos huevos escalfados, salsa picante, pan tostado.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-title"><span>Campesino</span> <span>21k</span></div>
+                            <div class="menu-item-desc">queso madurado, fruta, pan tostado, mermelada, huevos revueltos, parmesano.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-title"><span>Omelets</span> <span></span></div>
+                            <div class="menu-item-desc">Hawaiano 22k | Champiñones 23k | Ranchero 24k</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-title"><span>Pericos tradicionales</span> <span>15k</span></div>
+                            <div class="menu-item-desc">Cebollita, tomate, queso criollo, pan tostado.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-title"><span>Continental</span> <span>17k</span></div>
+                            <div class="menu-item-desc">Huevos revueltos, parmesano, nata, fruta, pan tostado, mermelada.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-title"><span>Tortilla española</span> <span>18k</span></div>
+                            <div class="menu-item-desc">Papas horneadas con paprika, cilantro, perejil, espinaca, queso.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MERIENDAS -->
+                <div class="menu-category">
+                    <div class="category-header">
+                        <h3 class="font-playfair font-bold text-[1.1rem] tracking-wide">Meriendas</h3>
+                        <i class="ph ph-plus text-lg transition-transform duration-300"></i>
+                    </div>
+                    <div class="category-content">
+                        <div class="menu-item">
+                            <div class="menu-item-title"><span>Pastas de Zucchini</span> <span>38k</span></div>
+                            <div class="menu-item-desc">calabaza, pollo, tocineta, almendras, sésamo, pan tostado.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-title"><span>Emparedados</span> <span></span></div>
+                            <div class="menu-item-desc">Pollo, jamón y queso 19k | Hawaiano 17k | Champiñones 18k</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-title"><span>Waffles pizza</span> <span></span></div>
+                            <div class="menu-item-desc">Pollo y champiñones 35k | Hawaiano 30k</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-title"><span>Hamburguesa</span> <span>29k</span></div>
+                            <div class="menu-item-desc">Vegetariana | Res | PolloZucchini</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- POSTRES -->
+                <div class="menu-category">
+                    <div class="category-header">
+                        <h3 class="font-playfair font-bold text-[1.1rem] tracking-wide">Postres</h3>
+                        <i class="ph ph-plus text-lg transition-transform duration-300"></i>
+                    </div>
+                    <div class="category-content">
+                        <div class="menu-item">
+                            <div class="menu-item-title"><span>Tostadas francesas</span> <span></span></div>
+                            <div class="menu-item-desc">Dulce 23k | Salada/dulce</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-title"><span>Tiramisú</span> <span>15k</span></div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-title"><span>Panqueques</span> <span>28k</span></div>
+                            <div class="menu-item-desc">4 tapas, fresa, banano, chocolate, mermelada, nata.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-title"><span>Ensalada de frutas</span> <span></span></div>
+                            <div class="menu-item-desc">Grande 25k | Mediano 15k | Pequeño 9k</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BEBIDAS CALIENTES -->
+                <div class="menu-category">
+                    <div class="category-header">
+                        <h3 class="font-playfair font-bold text-[1.1rem] tracking-wide">Bebidas Calientes</h3>
+                        <i class="ph ph-plus text-lg transition-transform duration-300"></i>
+                    </div>
+                    <div class="category-content">
+                        <div class="menu-item-desc grid grid-cols-2 gap-y-2 pb-2">
+                            <span>Espresso <b>3k</b></span>
+                            <span>Ristretto <b>3k</b></span>
+                            <span>Lungo <b>3k</b></span>
+                            <span>Dopio <b>5k</b></span>
+                            <span>Americano <b>4k</b></span>
+                            <span>Machiato <b>4k</b></span>
+                            <span>Capuchino <b>8k</b></span>
+                            <span>Flat white <b>12k</b></span>
+                            <span>Café latte <b>10k</b></span>
+                            <span>Mocachino <b>13k</b></span>
+                            <span>Café bombón <b>15k</b></span>
+                            <span>Chocolate <b>8k</b></span>
+                            <span>Oreo latte <b>12k</b></span>
+                            <span>Infufrutas <b>7k</b></span>
+                            <span>Latte chai <b>9k</b></span>
+                            <span>Latte matcha <b>9k</b></span>
+                            <span>Tés <b>4k</b></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BEBIDAS FRÍAS -->
+                <div class="menu-category">
+                    <div class="category-header">
+                        <h3 class="font-playfair font-bold text-[1.1rem] tracking-wide">Bebidas Frías</h3>
+                        <i class="ph ph-plus text-lg transition-transform duration-300"></i>
+                    </div>
+                    <div class="category-content">
+                        <div class="menu-item-desc grid grid-cols-2 gap-y-2 pb-2">
+                            <span>Americano helado <b>6k</b></span>
+                            <span>Latte helado <b>12k</b></span>
+                            <span>Café dalgona <b>15k</b></span>
+                            <span>Affogato <b>15k</b></span>
+                            <span>Limonada café <b>9k</b></span>
+                            <span>Café soda <b>13k</b></span>
+                            <span>Coffee tonic <b>13k</b></span>
+                            <span>Frapuchino <b>20k</b></span>
+                            <span>Frapemoka <b>20k</b></span>
+                            <span>Frape chocolate <b>20k</b></span>
+                            <span>Sodas frutas <b>15k</b></span>
+                            <span>Jugos en agua <b>10k</b></span>
+                            <span>Jugos en leche <b>13k</b></span>
+                            <span>Yogur <b>12k</b></span>
+                            <span>Matcha frío <b>12k</b></span>
+                            <span>Chai frío <b>12k</b></span>
+                            <span>Agüita gomela <b>6k</b></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Otros Botones -->
+            <a href="https://wa.me/573234782835" target="_blank" class="outline-btn">
+                <i class="ph ph-whatsapp-logo text-xl"></i>
+                PEDIDOS POR WHATSAPP
+            </a>
+
+            <a href="https://www.instagram.com/joel226coffeebrunch" target="_blank" class="outline-btn">
+                <i class="ph ph-instagram-logo text-xl"></i>
+                SÍGUENOS EN INSTAGRAM
+            </a>
+
+            <a href="https://www.tiktok.com/@joel226coffeeandfood" target="_blank" class="outline-btn">
+                <i class="ph ph-tiktok-logo text-xl"></i>
+                TIKTOK
+            </a>
+
+            <a href="https://www.facebook.com/profile.php?id=100094154660943" target="_blank" class="outline-btn">
+                <i class="ph ph-facebook-logo text-xl"></i>
+                FACEBOOK
+            </a>
+        </section>
+
+        <!-- Brunch Kits Section -->
+        <section class="w-full px-8 mt-12 mb-8 text-center z-10">
+            <div class="ornament-line mb-6"></div>
+            
+            <h2 class="font-playfair font-bold text-[1.3rem] tracking-wide mb-6">Brunch Kits<br><span class="font-montserrat font-normal text-xs tracking-widest mt-1 block uppercase opacity-80">(Cajita de Jaco)</span></h2>
+            
+            <div class="border border-joelgold/30 rounded-xl p-5 mb-4 bg-joelgold/5 text-left shadow-lg">
+                <h3 class="font-playfair text-lg text-joelgold mb-1"> Burrito</h3>
+                <p class="font-montserrat text-xs text-joelgold/75 mb-3 leading-relaxed">Burrito de pollo con papitas rústicas + Bebida + Juguete</p>
+                <p class="font-montserrat font-bold text-lg text-right">$35.000</p>
+            </div>
+            
+            <div class="border border-joelgold/30 rounded-xl p-5 bg-joelgold/5 text-left shadow-lg">
+                <h3 class="font-playfair text-lg text-joelgold mb-1"> Huevo Revuelto</h3>
+                <p class="font-montserrat text-xs text-joelgold/75 mb-3 leading-relaxed">Huevo revuelto y panqueque + Bebida + Juguete</p>
+                <p class="font-montserrat font-bold text-lg text-right">$35.000</p>
+            </div>
+            
+            <div class="ornament-line mt-8"></div>
+        </section>
+
+        <!-- Footer Redes -->
+        <footer class="w-full text-center mt-auto pb-10 z-10">
+            <div class="flex justify-center gap-6 mb-3 text-2xl">
+                <a href="https://www.instagram.com/joel226coffeebrunch" class="hover:text-white transition-colors"><i class="ph ph-instagram-logo"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100094154660943" class="hover:text-white transition-colors"><i class="ph ph-facebook-logo"></i></a>
+                <a href="https://www.tiktok.com/@joel226coffeeandfood" class="hover:text-white transition-colors"><i class="ph ph-tiktok-logo"></i></a>
+            </div>
+            <p class="font-montserrat font-medium text-sm tracking-widest flex items-center justify-center gap-2">
+                <i class="ph-fill ph-whatsapp-logo text-lg"></i>
+                +57 323 478 2835
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- Script para el Menú Acordeón -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            const menuDropdown = document.getElementById('menuDropdown');
+            const menuChevron = document.getElementById('menuChevron');
+
+            // Abrir menú principal
+            menuToggle.addEventListener('click', () => {
+                menuDropdown.classList.toggle('open');
+                
+                // Rotar el ícono de flecha principal
+                if (menuDropdown.classList.contains('open')) {
+                    menuChevron.style.transform = 'rotate(180deg)';
+                } else {
+                    menuChevron.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            // Manejo de sub-acordeones por categoría
+            const categoryHeaders = document.querySelectorAll('.category-header');
+            
+            categoryHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('i');
+                    
+                    // Comportamiento de acordeón único: Cierra otros al abrir uno (opcional para mantener limpieza)
+                    document.querySelectorAll('.category-content').forEach(otherContent => {
+                        if (otherContent !== content && otherContent.classList.contains('open')) {
+                            otherContent.classList.remove('open');
+                            otherContent.previousElementSibling.querySelector('i').classList.replace('ph-minus', 'ph-plus');
+                        }
+                    });
+
+                    // Toggle del actual
+                    content.classList.toggle('open');
+                    
+                    if (content.classList.contains('open')) {
+                        icon.classList.replace('ph-plus', 'ph-minus');
+                    } else {
+                        icon.classList.replace('ph-minus', 'ph-plus');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
