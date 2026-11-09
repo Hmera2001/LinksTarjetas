@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Penguin Caps • Gorras con estilo</title>
+  <meta name="description" content="Penguin Caps: gorras con estilo frío. Escríbenos por WhatsApp y síguenos en Instagram y TikTok.">
+  <meta name="theme-color" content="#738e9e">
+  <meta property="og:title" content="Penguin Caps">
+  <meta property="og:description" content="Gorras con estilo frío. Pide la tuya por WhatsApp.">
+  <meta property="og:image" content="logo.jpg">
+  <link rel="icon" href="logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Identidad Penguin Caps ===== */
+    :root {
+      --fondo: #74909e;          /* azul pizarra exacto del fondo del logo */
+      --fondo-oscuro: #5e7888;
+      --hielo: #8ee0e4;          /* gorra / letras */
+      --hielo-claro: #c9f3f4;
+      --nieve: #ffffff;
+      --tinta: #151515;          /* contorno del dibujo */
+      --naranja: #f6a623;        /* pico */
+      --texto-suave: #e6eef2;
+
+      --fuente-titulos: "Lilita One", "Arial Rounded MT Bold", system-ui, sans-serif;
+      --fuente-base: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+      --borde: 3px solid var(--tinta);
+      --sombra: 4px 4px 0 var(--tinta);
+      --sombra-hover: 6px 6px 0 var(--tinta);
+      --radio: 18px;
+      --transicion: 160ms cubic-bezier(.2, .8, .2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      min-height: 100dvh;
+      font-family: var(--fuente-base);
+      color: var(--nieve);
+      background: var(--fondo);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 3px solid var(--nieve); outline-offset: 4px; border-radius: 12px; }
+    ::selection { background: var(--hielo); color: var(--tinta); }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+    /* ===== Nieve cayendo (decorativa) ===== */
+    .nieve {
+      position: fixed; inset: -100px 0 0; pointer-events: none; z-index: 0;
+      background-image:
+        radial-gradient(circle, rgb(255 255 255 / .9) 0 2px, transparent 2.5px),
+        radial-gradient(circle, rgb(255 255 255 / .6) 0 1.5px, transparent 2px),
+        radial-gradient(circle, rgb(255 255 255 / .45) 0 3px, transparent 3.5px);
+      background-size: 120px 120px, 80px 80px, 200px 200px;
+      background-position: 0 0, 40px 60px, 100px 30px;
+      animation: caer 14s linear infinite;
+      opacity: .55;
+    }
+    @keyframes caer {
+      to { background-position: 30px 120px, 60px 140px, 80px 230px; }
+    }
+
+    /* ===== Tarjeta ===== */
+    .tarjeta {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 440px; margin-inline: auto;
+      padding: 20px 20px calc(28px + env(safe-area-inset-bottom));
+      display: flex; flex-direction: column; align-items: center; gap: 22px;
+    }
+
+    .insignia {
+      align-self: flex-start;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 12px;
+      background: var(--nieve); color: var(--tinta);
+      border: 2px solid var(--tinta); border-radius: 999px;
+      box-shadow: 2px 2px 0 var(--tinta);
+      font-weight: 900; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+    }
+    .insignia svg { width: 14px; height: 14px; color: #3bb8be; }
+
+    .logo {
+      width: min(88%, 320px);
+      margin-top: 4px;
+      animation: flotar 4s ease-in-out infinite;
+    }
+    /* logo sin fondo (PNG transparente) con sombra tipo sticker */
+    .logo img { width: 100%; height: auto; filter: drop-shadow(0 10px 0 rgb(0 0 0 / .12)) drop-shadow(0 18px 24px rgb(0 0 0 / .18)); }
+    @keyframes flotar { 50% { transform: translateY(-6px) rotate(-1deg); } }
+
+    .lema {
+      font-family: var(--fuente-titulos);
+      font-size: clamp(1.35rem, 1.1rem + 1.4vw, 1.6rem);
+      line-height: 1.15; text-align: center; letter-spacing: .01em;
+      color: var(--nieve);
+      text-shadow: 2px 2px 0 var(--tinta);
+      text-wrap: balance;
+    }
+    .lema span { color: var(--hielo); }
+
+    .descripcion {
+      max-width: 34ch; margin-top: -10px;
+      text-align: center; font-weight: 700; line-height: 1.55;
+      color: var(--texto-suave);
+    }
+
+    .chips { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .chips li {
+      padding: 6px 14px;
+      background: var(--fondo-oscuro);
+      border: 2px solid var(--tinta); border-radius: 999px;
+      font-weight: 800; font-size: .8rem;
+    }
+
+    /* ===== Botones tipo sticker ===== */
+    .enlaces { width: 100%; display: grid; gap: 16px; list-style: none; padding: 0; }
+
+    .boton {
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; gap: 14px;
+      width: 100%; padding: 16px 18px;
+      border: var(--borde); border-radius: var(--radio);
+      box-shadow: var(--sombra);
+      background: var(--tinta); color: var(--nieve);
+      transition: transform var(--transicion), box-shadow var(--transicion);
+    }
+    .boton:hover { transform: translate(-2px, -2px); box-shadow: var(--sombra-hover); }
+    .boton:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--tinta); }
+
+    .boton__icono {
+      flex: none; display: grid; place-items: center;
+      width: 46px; height: 46px; border-radius: 14px;
+      background: var(--hielo); color: var(--tinta);
+      border: 2px solid var(--tinta);
+    }
+    .boton__icono svg { width: 24px; height: 24px; }
+    .boton__texto { flex: 1; min-width: 0; display: grid; gap: 1px; }
+    .boton__titulo { font-family: var(--fuente-titulos); font-size: 1.2rem; letter-spacing: .02em; line-height: 1.1; }
+    .boton__sub { font-size: .82rem; font-weight: 700; opacity: .75; overflow-wrap: anywhere; }
+    .boton__flecha { flex: none; width: 22px; height: 22px; opacity: .8; transition: transform var(--transicion); }
+    .boton:hover .boton__flecha { transform: translateX(3px); }
+
+    /* Principal: hielo con nieve encima, como las letras del logo */
+    .boton--principal {
+      padding-top: 24px;
+      background: var(--hielo); color: var(--tinta);
+    }
+    .boton--principal::before {
+      content: ""; position: absolute; left: 0; right: 0; top: 0; height: 18px;
+      background:
+        linear-gradient(var(--nieve), var(--nieve)) top / 100% 7px no-repeat,
+        radial-gradient(circle at 50% 0, var(--nieve) 0 8px, transparent 8.5px) 0 0 / 26px 16px repeat-x,
+        radial-gradient(circle at 50% 0, var(--nieve) 0 5px, transparent 5.5px) 13px 0 / 26px 12px repeat-x;
+      pointer-events: none;
+    }
+    .boton--principal .boton__icono { background: var(--nieve); }
+    .boton--principal .boton__titulo { font-size: 1.35rem; }
+    .boton--principal .boton__sub { opacity: .8; }
+    .etiqueta-principal {
+      display: inline-block; justify-self: start;
+      margin-bottom: 3px; padding: 2px 8px;
+      background: var(--naranja); color: var(--tinta);
+      border: 2px solid var(--tinta); border-radius: 6px;
+      font-size: .66rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase;
+    }
+
+    /* ===== Compartir ===== */
+    .compartir {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 18px;
+      background: transparent; color: var(--nieve);
+      border: 2px dashed rgb(255 255 255 / .6); border-radius: 999px;
+      font-weight: 800; font-size: .85rem; cursor: pointer;
+      transition: background var(--transicion), border-color var(--transicion);
+    }
+    .compartir:hover { background: rgb(255 255 255 / .1); border-color: var(--nieve); }
+    .compartir svg { width: 16px; height: 16px; }
+
+    .pie { text-align: center; font-size: .75rem; font-weight: 700; color: var(--texto-suave); opacity: .85; line-height: 1.6; }
+    .pie strong { font-family: var(--fuente-titulos); font-weight: 400; font-size: 1rem; letter-spacing: .04em; color: var(--nieve); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+      .nieve { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="nieve" aria-hidden="true"></div>
+
+  <main class="tarjeta">
+    <span class="insignia">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M4.9 4.9l14.2 14.2M2 12h20M4.9 19.1 19.1 4.9"/></svg>
+      Gorras oficiales
+    </span>
+
+    <div class="logo">
+      <img src="logo.png" width="836" height="790" alt="Logo de Penguin Caps: pingüino con gorra celeste y gafas, y el nombre en letras de hielo">
+    </div>
+
+    <h1 class="sr-only">Penguin Caps</h1>
+    <p class="lema">Gorras con estilo <span>bajo cero</span></p>
+    <p class="descripcion">Cubre tu cabeza con flow. Escríbenos y separa la tuya antes de que se derrita el stock.</p>
+
+    <ul class="chips" aria-label="Lo que encuentras">
+      <li>🧢 Gorras</li>
+      <li>❄️ Streetwear</li>
+      <li>🐧 Estilo frío</li>
+    </ul>
+
+    <ul class="enlaces">
+      <li>
+        <!-- CAMBIAR: número de WhatsApp con indicativo, sin + ni espacios (ej. 573001234567) -->
+        <a class="boton boton--principal" href="https://wa.me/573135085698?text=Hola%20Penguin%20Caps%20%F0%9F%90%A7%20quiero%20info%20de%20las%20gorras" target="_blank" rel="noopener">
+          <span class="boton__icono">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3Z"/></svg>
+          </span>
+          <span class="boton__texto">
+            <span class="etiqueta-principal">Pedidos</span>
+            <span class="boton__titulo">Escríbenos por WhatsApp</span>
+            <span class="boton__sub">Respuesta directa con el equipo</span>
+          </span>
+          <svg class="boton__flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+        </a>
+      </li>
+      <li>
+        <a class="boton" href="https://www.instagram.com/penguin.caps" target="_blank" rel="noopener">
+          <span class="boton__icono">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <span class="boton__texto">
+            <span class="boton__titulo">Instagram</span>
+            <span class="boton__sub">@penguin.caps</span>
+          </span>
+          <svg class="boton__flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+        </a>
+      </li>
+      <li>
+        <!-- CAMBIAR: usuario de TikTok si no es @penguin.caps -->
+        <a class="boton" href="https://www.tiktok.com/@penguin.caps" target="_blank" rel="noopener">
+          <span class="boton__icono">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 2h-3.3v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.2a6.3 6.3 0 1 0 5.3 6.2V8.6a7.9 7.9 0 0 0 4.4 1.4V6.7a4.5 4.5 0 0 1-4.4-4.7Z"/></svg>
+          </span>
+          <span class="boton__texto">
+            <span class="boton__titulo">TikTok</span>
+            <span class="boton__sub">@penguin.caps</span>
+          </span>
+          <svg class="boton__flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+        </a>
+      </li>
+    </ul>
+
+    <button class="compartir" type="button" data-compartir>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+      <span data-compartir-texto>Compartir esta tarjeta</span>
+    </button>
+
+    <footer class="pie">
+      <strong>PENGUIN CAPS</strong><br>
+      Tarjeta NFC oficial · © <span data-anio>2026</span>
+    </footer>
+  </main>
+
+  <script>
+    document.querySelector('[data-anio]').textContent = new Date().getFullYear();
+
+    const botonCompartir = document.querySelector('[data-compartir]');
+    const textoCompartir = botonCompartir.querySelector('[data-compartir-texto]');
+    botonCompartir.addEventListener('click', async () => {
+      const datos = { title: 'Penguin Caps', text: 'Mira las gorras de Penguin Caps 🐧🧢', url: location.href };
+      try {
+        if (navigator.share) { await navigator.share(datos); return; }
+        await navigator.clipboard.writeText(location.href);
+        textoCompartir.textContent = '¡Enlace copiado! ❄️';
+        setTimeout(() => (textoCompartir.textContent = 'Compartir esta tarjeta'), 2200);
+      } catch (_) { /* el usuario canceló */ }
+    });
+  </script>
+</body>
+</html>
