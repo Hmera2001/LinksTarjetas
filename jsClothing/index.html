@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>JS Clothing • Tienda oficial</title>
+  <meta name="description" content="JS Clothing: ropa de marca en Santander de Quilichao con envíos nacionales. Escríbenos por WhatsApp.">
+  <meta name="theme-color" content="#020202">
+  <link rel="icon" href="logo.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600;6..96,700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Identidad JS Clothing: negro profundo, oro metálico, blanco del monograma ===== */
+    :root {
+      --fondo: #020202;
+      --superficie: #0d0c0a;
+      --superficie-2: #15130f;
+      --blanco: #f7f4ee;
+      --texto-suave: #b9b2a5;
+      --oro: #d4a94a;
+      --oro-metal: linear-gradient(115deg, #8a6a1f 0%, #e9c46a 22%, #fbe7a1 38%, #c4952f 55%, #f3d27a 72%, #9c7424 100%);
+      --linea-oro: rgb(212 169 74 / .35);
+      --fuente-titulos: "Bodoni Moda", "Didot", Georgia, serif;
+      --fuente-base: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --radio: 14px;
+      --transicion: 240ms cubic-bezier(.2, .8, .2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      min-height: 100dvh;
+      font-family: var(--fuente-base);
+      color: var(--blanco);
+      background:
+        radial-gradient(60% 40% at 50% 12%, rgb(212 169 74 / .14), transparent 70%),
+        var(--fondo);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--oro); outline-offset: 4px; border-radius: 8px; }
+    ::selection { background: var(--oro); color: var(--fondo); }
+
+    .tarjeta {
+      width: 100%; max-width: 440px; margin-inline: auto;
+      padding: 24px 20px calc(32px + env(safe-area-inset-bottom));
+      display: flex; flex-direction: column; align-items: center;
+    }
+
+    .insignia {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 14px;
+      border: 1px solid var(--linea-oro); border-radius: 999px;
+      font-size: .64rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--oro);
+    }
+    .insignia::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--oro); box-shadow: 0 0 8px var(--oro); }
+
+    /* ===== Logo con brillo dorado ===== */
+    .logo {
+      position: relative; margin-top: 22px;
+      width: min(68vw, 250px); aspect-ratio: 1;
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px rgb(212 169 74 / .25), 0 0 60px rgb(212 169 74 / .22), 0 20px 50px rgb(0 0 0 / .8);
+    }
+    .logo img { width: 100%; height: 100%; border-radius: 50%; }
+    .logo::after { /* destello que recorre el aro */
+      content: ""; position: absolute; inset: 0; border-radius: 50%;
+      background: linear-gradient(115deg, transparent 40%, rgb(255 240 200 / .22) 50%, transparent 60%) -200% 0 / 300% 100% no-repeat;
+      animation: destello 5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes destello { 0%, 55% { background-position: 200% 0; } 100% { background-position: -100% 0; } }
+
+    .nombre {
+      margin-top: 26px;
+      font-family: var(--fuente-titulos); font-weight: 700;
+      font-size: clamp(2.3rem, 9vw, 2.8rem); line-height: 1; letter-spacing: .02em; text-align: center;
+      background: var(--oro-metal); -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .lema {
+      margin-top: 10px;
+      font-size: .7rem; font-weight: 500; letter-spacing: .38em; text-transform: uppercase; color: var(--texto-suave);
+    }
+
+    /* separador como la línea dorada del logo */
+    .separador { display: flex; align-items: center; gap: 12px; width: 100%; margin: 24px 0; color: var(--oro); }
+    .separador::before, .separador::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--oro), transparent); }
+    .separador svg { width: 18px; height: 18px; }
+
+    /* ===== Beneficios ===== */
+    .beneficios { list-style: none; padding: 0; width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .beneficio {
+      display: grid; justify-items: center; gap: 6px; padding: 12px 6px;
+      background: var(--superficie); border: 1px solid rgb(255 255 255 / .06); border-radius: var(--radio);
+      text-align: center; font-size: .66rem; font-weight: 600; letter-spacing: .06em; line-height: 1.35; color: var(--texto-suave);
+    }
+    .beneficio svg { width: 20px; height: 20px; color: var(--oro); }
+
+    /* ===== Enlaces ===== */
+    .enlaces { list-style: none; padding: 0; width: 100%; display: grid; gap: 12px; margin-top: 22px; }
+    .boton {
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; gap: 14px;
+      padding: 15px 16px;
+      background: var(--superficie); border: 1px solid var(--linea-oro); border-radius: var(--radio);
+      transition: transform var(--transicion), border-color var(--transicion), background var(--transicion);
+    }
+    a.boton:hover { transform: translateY(-2px); border-color: var(--oro); background: var(--superficie-2); }
+    a.boton:active { transform: translateY(0); }
+    .boton__icono {
+      flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+      border: 1px solid var(--linea-oro); color: var(--oro);
+    }
+    .boton__icono svg { width: 21px; height: 21px; }
+    .boton__texto { flex: 1; min-width: 0; display: grid; gap: 2px; }
+    .boton__titulo { font-weight: 700; font-size: .9rem; letter-spacing: .04em; }
+    .boton__sub { font-size: .75rem; color: var(--texto-suave); overflow-wrap: anywhere; }
+    .boton__flecha { flex: none; width: 18px; height: 18px; color: var(--oro); transition: transform var(--transicion); }
+    a.boton:hover .boton__flecha { transform: translateX(3px); }
+
+    /* principal: oro metálico con brillo que pasa */
+    .boton--principal { background: var(--oro-metal); border: 0; color: #1a1306; padding-block: 18px; box-shadow: 0 10px 30px rgb(212 169 74 / .25); }
+    a.boton--principal:hover { background: var(--oro-metal); box-shadow: 0 14px 36px rgb(212 169 74 / .35); }
+    .boton--principal .boton__icono { background: #0b0904; border-color: transparent; color: #f3d27a; }
+    .boton--principal .boton__titulo { font-size: 1rem; }
+    .boton--principal .boton__sub { color: #3d2e0e; font-weight: 600; }
+    .boton--principal .boton__flecha { color: #1a1306; }
+    .boton--principal::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(110deg, transparent 35%, rgb(255 255 255 / .55) 50%, transparent 65%) 200% 0 / 250% 100% no-repeat;
+      animation: brillo 3.6s ease-in-out infinite;
+    }
+    @keyframes brillo { 0%, 60% { background-position: 200% 0; } 100% { background-position: -100% 0; } }
+
+    /* TikTok aún no disponible */
+    .boton--pronto { opacity: .6; border-style: dashed; }
+    .etiqueta-pronto {
+      flex: none; padding: 4px 9px; border-radius: 999px;
+      background: rgb(212 169 74 / .12); color: var(--oro);
+      font-size: .6rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    }
+
+    .compartir {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 26px; padding: 10px 18px;
+      background: none; border: 1px solid rgb(255 255 255 / .14); border-radius: 999px; color: var(--texto-suave);
+      font: 600 .7rem var(--fuente-base); letter-spacing: .2em; text-transform: uppercase; cursor: pointer;
+      transition: color var(--transicion), border-color var(--transicion);
+    }
+    .compartir:hover { color: var(--oro); border-color: var(--oro); }
+    .compartir svg { width: 15px; height: 15px; }
+
+    .pie { margin-top: 26px; text-align: center; font-size: .62rem; letter-spacing: .24em; text-transform: uppercase; color: #77705f; line-height: 2.1; }
+    .pie strong { display: block; font-family: var(--fuente-titulos); font-size: 1.1rem; letter-spacing: .06em; color: var(--oro); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="tarjeta">
+    <span class="insignia">Tienda oficial</span>
+
+    <div class="logo">
+      <img src="logo.webp" width="560" height="560" alt="Logo de JS Clothing: monograma JS blanco con un diamante dorado dentro de un aro de oro">
+    </div>
+
+    <h1 class="nombre">JS Clothing</h1>
+    <p class="lema">Viste con estilo</p>
+
+    <div class="separador" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9l4-6Z"/><path d="M2 9h20M9 3l3 18 3-18"/></svg>
+    </div>
+
+    <ul class="beneficios" aria-label="Por qué comprar en JS Clothing">
+      <li class="beneficio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5V20H3V9.5Z"/><path d="M9 20v-6h6v6"/></svg>
+        Tienda<br>física
+      </li>
+      <li class="beneficio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6h13v10H1zM14 10h4l3 3v3h-7"/><circle cx="5.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg>
+        Envíos<br>nacionales
+      </li>
+      <li class="beneficio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6l-8-3Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
+        Seguros y<br>confiables
+      </li>
+    </ul>
+
+    <ul class="enlaces">
+      <li>
+        <a class="boton boton--principal" href="https://wa.me/573184926514?text=Hola%20JS%20Clothing%2C%20quiero%20informaci%C3%B3n%20de%20sus%20prendas" target="_blank" rel="noopener">
+          <span class="boton__icono">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3Z"/></svg>
+          </span>
+          <span class="boton__texto">
+            <span class="boton__titulo">Compra por WhatsApp</span>
+            <span class="boton__sub">318 492 6514 · Atención directa</span>
+          </span>
+          <svg class="boton__flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+        </a>
+      </li>
+      <li>
+        <a class="boton" href="https://chat.whatsapp.com/KUkVHvrEr9Z4PDE0njLyf0" target="_blank" rel="noopener">
+          <span class="boton__icono">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+          </span>
+          <span class="boton__texto">
+            <span class="boton__titulo">Grupo de difusión</span>
+            <span class="boton__sub">Entérate primero de lo nuevo</span>
+          </span>
+          <svg class="boton__flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+        </a>
+      </li>
+      <li>
+        <a class="boton" href="https://www.instagram.com/js_clothing23" target="_blank" rel="noopener">
+          <span class="boton__icono">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <span class="boton__texto">
+            <span class="boton__titulo">Instagram</span>
+            <span class="boton__sub">@js_clothing23</span>
+          </span>
+          <svg class="boton__flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+        </a>
+      </li>
+      <li>
+        <!-- CAMBIAR cuando abran TikTok: convertir en <a class="boton" href="https://www.tiktok.com/@usuario"> como los demás -->
+        <div class="boton boton--pronto" aria-disabled="true">
+          <span class="boton__icono">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 2h-3.3v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.2a6.3 6.3 0 1 0 5.3 6.2V8.6a7.9 7.9 0 0 0 4.4 1.4V6.7a4.5 4.5 0 0 1-4.4-4.7Z"/></svg>
+          </span>
+          <span class="boton__texto">
+            <span class="boton__titulo">TikTok</span>
+            <span class="boton__sub">Estamos preparando algo</span>
+          </span>
+          <span class="etiqueta-pronto">Muy pronto</span>
+        </div>
+      </li>
+    </ul>
+
+    <button class="compartir" type="button" data-compartir>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+      <span data-compartir-texto>Compartir tarjeta</span>
+    </button>
+
+    <footer class="pie">
+      <strong>JS Clothing</strong>
+      Santander de Quilichao · Colombia<br>
+      Tarjeta NFC oficial · © <span data-anio>2026</span>
+    </footer>
+  </main>
+
+  <script>
+    document.querySelector('[data-anio]').textContent = new Date().getFullYear();
+    const boton = document.querySelector('[data-compartir]');
+    const texto = boton.querySelector('[data-compartir-texto]');
+    boton.addEventListener('click', async () => {
+      try {
+        if (navigator.share) { await navigator.share({ title: 'JS Clothing', url: location.href }); return; }
+        await navigator.clipboard.writeText(location.href);
+        texto.textContent = 'Enlace copiado';
+        setTimeout(() => (texto.textContent = 'Compartir tarjeta'), 2200);
+      } catch (_) { /* el usuario canceló */ }
+    });
+  </script>
+</body>
+</html>
