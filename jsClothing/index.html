@@ -99,6 +99,10 @@
       text-align: center; font-size: .66rem; font-weight: 600; letter-spacing: .06em; line-height: 1.35; color: var(--texto-suave);
     }
     .beneficio svg { width: 20px; height: 20px; color: var(--oro); }
+    .beneficio--enlace { height: 100%; border-color: var(--linea-oro); color: var(--blanco); transition: transform var(--transicion), border-color var(--transicion), background var(--transicion); }
+    .beneficio--enlace:hover { border-color: var(--oro); background: var(--superficie-2); transform: translateY(-2px); }
+    .beneficio--enlace:active { transform: translateY(1px); }
+    .beneficio__mapa { font-size: .56rem; letter-spacing: .14em; text-transform: uppercase; color: var(--oro); }
 
     /* ===== Enlaces ===== */
     .enlaces { list-style: none; padding: 0; width: 100%; display: grid; gap: 12px; margin-top: 22px; }
@@ -177,9 +181,12 @@
     </div>
 
     <ul class="beneficios" aria-label="Por qué comprar en JS Clothing">
-      <li class="beneficio">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5V20H3V9.5Z"/><path d="M9 20v-6h6v6"/></svg>
-        Tienda<br>física
+      <li>
+        <a class="beneficio beneficio--enlace" href="https://maps.app.goo.gl/UpE6A6WbzgbqpRFo6" target="_blank" rel="noopener" aria-label="Tienda física: ver ubicación en Google Maps">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5V20H3V9.5Z"/><path d="M9 20v-6h6v6"/></svg>
+          Tienda<br>física
+          <span class="beneficio__mapa">Ver mapa ↗</span>
+        </a>
       </li>
       <li class="beneficio">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6h13v10H1zM14 10h4l3 3v3h-7"/><circle cx="5.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg>
